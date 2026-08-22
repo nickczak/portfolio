@@ -1,0 +1,171 @@
+---
+import Divider from "./Divider.astro";
+import GothicArch from "./graphics/GothicArch.astro";
+
+const socials = [
+  {
+    label: "GitHub",
+    href: "https://github.com/nickczak",
+    path: "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/nicholas-sobchak-b4aa2a329",
+    path: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z",
+  },
+];
+
+
+const skills = [
+  {
+    category: "Languages",
+    items: ["Java", "TypeScript", "JavaScript", "Python", "C++", "SQL"],
+  },
+  {
+    category: "Frameworks",
+    items: [
+      "Spring Boot",
+      "React",
+      "React Native / Expo",
+      "Angular",
+      "Next.js",
+      "Vue",
+      "FastAPI",
+    ],
+  },
+  {
+    category: "Services",
+    items: [
+      "AWS Lambda",
+      "Amazon Cognito",
+      "DynamoDB",
+      "PostgreSQL",
+      "Docker",
+      "GitHub Actions",
+    ],
+  },
+];
+---
+
+<section class="relative mx-auto w-full max-w-5xl flex-1 overflow-hidden px-6 py-20 md:px-10 md:py-28">
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 flex justify-center gap-32 opacity-[0.05]"
+    aria-hidden="true"
+  >
+    <GothicArch class="h-[420px] w-auto translate-y-2 text-gold" />
+    <GothicArch class="hidden h-[380px] w-auto translate-y-10 text-gold sm:block" />
+  </div>
+
+  <div class="relative">
+    <img
+      src="/heist-logo.jpg"
+      alt="Heist crest"
+      width={1125}
+      height={1493}
+      class="float-right mb-6 ml-6 h-44 w-44 rounded-full object-cover object-top sm:h-56 sm:w-56 md:mb-8 md:ml-10 md:h-80 md:w-80 lg:h-[22rem] lg:w-[22rem]"
+    />
+
+    <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.35em] text-gold/80">
+      [ ELDERSBURG, MD ]
+    </p>
+
+    <h1 class="font-gothic text-4xl font-medium text-bone sm:text-6xl [text-wrap:balance]">
+      Nicholas Sobchak
+    </h1>
+
+    <p class="mt-8 max-w-xl font-academic text-xl italic leading-relaxed text-parchment md:text-2xl">
+      Full-Stack Engineer specializing in resilient system architecture and
+      independent product delivery.
+    </p>
+
+    <nav aria-label="Social links" class="mt-10 flex items-center gap-4">
+      {
+        socials.map(({ label, href, path }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            title={label}
+            class="flex h-12 w-12 items-center justify-center border border-charcoal text-faded hover:border-gold hover:bg-gold/10 hover:text-gold"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+              <path d={path} />
+            </svg>
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="clear-both"></div>
+  </div>
+</section>
+
+<section class="mx-auto w-full max-w-5xl px-6 pb-14 md:px-10" aria-label="Professional experience">
+  <div class="pb-6">
+    <h2 class="font-gothic text-2xl text-bone md:text-3xl">
+      Professional Experience
+    </h2>
+  </div>
+  <Divider />
+
+  <div class="mt-5 flex items-center gap-6 border border-charcoal p-6 transition-colors duration-200 hover:bg-charcoal/20 md:gap-8 md:p-8">
+    <a
+      href="https://ziptip.io"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visit ZipTip"
+      title="ZipTip"
+    >
+      <img
+        src="/ziptip-logo.png"
+        alt="ZipTip logo"
+        width={499}
+        height={504}
+        class="h-20 w-20 object-contain transition-transform duration-200 hover:scale-105 md:h-24 md:w-24"
+      />
+    </a>
+
+    <div>
+      <h3 class="font-mono text-base font-bold uppercase tracking-wider text-parchment md:text-lg">
+        Founding Software Developer @
+        <a
+          href="https://ziptip.io"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-bone underline decoration-charcoal underline-offset-4 transition-colors duration-200 hover:decoration-gold hover:text-gold">ZipTip</a
+        >
+      </h3>
+      <p class="mt-2 font-mono text-xs tracking-[0.2em] text-gold md:text-sm">Dec 2025 – Present</p>
+    </div>
+  </div>
+</section>
+
+<section class="mx-auto w-full max-w-5xl" aria-label="Tech stack">
+  <div class="mx-auto w-full max-w-5xl px-6 pb-10 pt-2 sm:px-10">
+    <div class="flex items-end justify-between gap-6 pb-6">
+      <h2 class="font-gothic text-2xl text-bone md:text-3xl">
+        Tech Stack
+      </h2>
+      <span class="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-faded sm:block">
+        [ LANGUAGES · FRAMEWORKS · SERVICES ]
+      </span>
+    </div>
+    <Divider />
+  </div>
+
+  <div class="grid grid-cols-1 divide-y divide-charcoal sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      {
+        skills.map(({ category, items }) => (
+          <div class="pb-6 pt-1 sm:px-8 sm:first:pl-0 sm:last:pr-0">
+            <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
+              [ {category} ]
+            </p>
+            <p class="mt-5 font-mono text-sm leading-loose text-parchment md:text-base">
+              {items.join("  ·  ")}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+</section>
