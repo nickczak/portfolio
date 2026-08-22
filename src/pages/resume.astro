@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Divider from "../components/Divider.astro";
+import Footer from "../components/Footer.astro";
+
+interface Entry {
+  role: string;
+  org?: string;
+  meta?: string;
+  dates: string;
+  bullets?: string[];
+}
+
+const contact = [
+  "Eldersburg, MD 21784",
+  "(443) 586.6341",
+  "nlsobchak@gmail.com",
+  "U.S. Citizen, Eligible for U.S. Security Clearance",
+];
+
+const experience: Entry[] = [
+  {
+    role: "Founding Software Developer",
+    org: "ZipTip",
+    meta: "Remote / Westminster, MD",
+    dates: "Dec 2025 – Present",
+    bullets: [
+      "PYTHON: lambda, boto3, Cognito, JSON, Docker, SAM CLI",
+      "TYPESCRIPT: Angular",
+      "CI/CD: Github Actions",
+      "UNIT & INTEGRATION: tests using pytest, automated AWS SAM deployment for prod and dev environments.",
+    ],
+  },
+];
+
+const skills = [
+  { area: "Java", detail: "Spring Boot, JPA, Gradle, JUnit" },
+  { area: "JavaScript/Typescript", detail: "Angular, React Native, HTML, CSS, Next.js, React, Vue" },
+  { area: "Python", detail: "FastAPI, Django, Flask, AWS (Lambda, SAM CLI), boto3, Cognito, JSON" },
+  { area: "Databases", detail: "PostgreSQL, DynamoDB" },
+  { area: "Tools", detail: "Git/GitHub, Docker, Linux, pip, uv (venv), npm, ESLint, Prettier, Vim, Tmux" },
+];
+
+const projects: Entry[] = [
+  {
+    role: "On The Money",
+    meta: "Typescript (React Native); Java (Spring Boot), JPA, PostgreSQL; Docker",
+    dates: "",
+    bullets: [
+      "Created RESTFul API using Spring Boot and JPA to manage financial calculation and transaction data.",
+      "Implemented PostgreSQL database with JPA for persistent storage of user data, financial calculations, and transaction history.",
+      "Used JSON to transmit data between Java API and React Native frontend, as well as between API and C++ engine for heavy financial calculations.",
+      "Developed a React Native frontend for iOS, Dockerized and deployed on a VPS.",
+    ],
+  },
+  {
+    role: "QuickQuill",
+    meta: "Typescript (Angular); Java (Spring Boot), JPA, PostgreSQL; Docker; C++17",
+    dates: "",
+    bullets: [
+      "Typescript frontend built with Angular for a responsive and user-friendly interface. (see QuickQuill)",
+      "Reduced repeated query latency from ~200ms to <0.18ms via in-memory caching in the C++ backend using Crow framework for handling HTTP requests and responses.",
+      "Implemented a RESTful API to facilitate communication between the C++ Trie and SQLite3 database, and the Typescript frontend.",
+      "Created ghost autofill feature in Typescript that interacts with the C++ Trie reaching sub-XXms auto-complete response times.",
+    ],
+  },
+];
+
+const education: Entry[] = [
+  {
+    role: "University of Maryland, Baltimore County",
+    org: "Bachelor of Science in Computer Science",
+    dates: "Aug 2025 – May 2027",
+  },
+  {
+    role: "Carroll Community College",
+    org: "Associate of Arts in Computer Science",
+    dates: "Sept 2023 – May 2025",
+  },
+];
+---
+
+<Layout title="RESUME — NICHOLAS SOBCHAK">
+  <NavBar />
+  <main class="mx-auto w-full max-w-5xl flex-1 px-6 py-16 md:px-10 md:py-24">
+    <div class="mb-12 flex items-end justify-between gap-6 border-b border-charcoal pb-6">
+      <h1 class="font-gothic text-3xl text-bone md:text-4xl">Resume</h1>
+      <a
+        href="https://raw.githubusercontent.com/nickczak/resume/main/mainJS.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="border border-charcoal px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-faded hover:border-gold hover:bg-gold/10 hover:text-gold"
+      >
+        [ Download PDF ]
+      </a>
+    </div>
+
+    <p class="font-mono text-[11px] leading-relaxed tracking-[0.15em] text-faded uppercase">
+      {contact.join("  //  ")}
+    </p>
+
+    <section class="mt-12"><div class="mb-8"><Divider /></div>
+      <h2 class="font-gothic text-xl text-bone md:text-2xl">Experience</h2>
+      {experience.map((e) => (
+        <article class="mt-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+            <h3 class="font-mono text-sm font-bold tracking-wider text-parchment uppercase">
+              {e.role}{e.org && ` – ${e.org}`}
+            </h3>
+            <p class="font-mono text-xs tracking-[0.2em] text-gold">{e.dates}</p>
+          </div>
+          <p class="mt-1 font-mono text-xs text-faded">{e.meta}</p>
+          <ul class="mt-4 space-y-2 font-mono text-sm leading-relaxed text-parchment/90">
+            {e.bullets?.map((b) => (
+              <li class="flex items-baseline gap-3">
+                <span class="text-faded" aria-hidden="true">-</span>
+                <span set:html={b.replace(/</g, "&lt;").replace(/>/g, "&gt;")} />
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </section>
+
+    <section class="mt-12"><div class="mb-8"><Divider /></div>
+      <h2 class="font-gothic text-xl text-bone md:text-2xl">Skills</h2>
+      <ul class="mt-8 space-y-3 font-mono text-sm leading-relaxed text-parchment/90">
+        {skills.map((s) => (
+          <li class="flex flex-wrap items-baseline gap-x-3">
+            <span class="text-faded" aria-hidden="true">-</span>
+            <span class="font-bold tracking-wider text-parchment uppercase">{s.area}:</span>
+            {s.detail}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mt-12"><div class="mb-8"><Divider /></div>
+      <h2 class="font-gothic text-xl text-bone md:text-2xl">Technical Projects</h2>
+      {projects.map((p) => (
+        <article class="mt-8">
+          <h3 class="font-mono text-sm font-bold tracking-wider text-parchment uppercase">{p.role}</h3>
+          <p class="mt-1 font-mono text-xs text-faded">{p.meta}</p>
+          <ul class="mt-4 space-y-2 font-mono text-sm leading-relaxed text-parchment/90">
+            {p.bullets?.map((b) => (
+              <li class="flex items-baseline gap-3">
+                <span class="text-faded" aria-hidden="true">-</span>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </section>
+
+    <section class="mt-12 pb-4"><div class="mb-8"><Divider /></div>
+      <h2 class="font-gothic text-xl text-bone md:text-2xl">Education</h2>
+      {education.map((e) => (
+        <article class="mt-8">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+            <h3 class="font-mono text-sm font-bold tracking-wider text-parchment uppercase">{e.role}</h3>
+            <p class="font-mono text-xs tracking-[0.2em] text-gold">{e.dates}</p>
+          </div>
+          <p class="mt-1 font-mono text-xs text-parchment/90">{e.org}</p>
+        </article>
+      ))}
+    </section>
+  </main>
+  <Footer />
+</Layout>
