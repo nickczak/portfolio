@@ -1,26 +1,22 @@
 <div align="center">
-  <img src="public/apple-touch-icon.png" alt="Quotex N monogram" width="128" />
+  <img src="public/readme-mark.png" alt="Quotex N monogram" width="128" />
 </div>
 
-<h1 align="center">Nicholas Sobchak — Portfolio</h1>
-
 <p align="center">
-  <em>A dark-academia developer portfolio built with Astro, TypeScript, and Tailwind CSS.</em>
+  <em>A developer portfolio built with Astro, TypeScript, and Tailwind CSS.</em>
 </p>
 
 ---
 
 ## Overview
 
-A single-theme, multi-page portfolio featuring a gothic-minimal design system: pitch-black canvas, parchment typography, oxblood accents, and generative ornamental rules. GitHub statistics are streamed at build time, and the resume is rendered in-theme from live data.
+Static pages created with [Astro](https://astro.build) and styled with [Tailwind CSS v4](https://tailwindcss.com). The site is fully static, with zero client-side JavaScript, and is hosted on GitHub Pages.
 
 **Pages**
 
-| Route       | Contents                                                        |
-| :---------- | :-------------------------------------------------------------- |
-| `/`         | Hero, professional experience (ZipTip), tech stack              |
-| `/projects` | Featured case studies — [quickquill.ink](https://github.com/nickczak/QuickQuill-Dictionary-SpellChecker), [On The Money](https://github.com/nickczak/OnTheMoney-Finance-Tracker) |
-| `/resume`   | Full résumé rendered in the site theme + PDF download           |
+- `/` — Hero, professional experience (ZipTip), tech stack
+- `/projects` — Featured case studies: [quickquill.ink](https://github.com/nickczak/QuickQuill-Dictionary-SpellChecker) and [On The Money](https://github.com/nickczak/OnTheMoney-Finance-Tracker)
+- `/resume` — Full résumé rendered in the site theme + PDF download
 
 ## Tech Stack
 
@@ -64,30 +60,6 @@ A single-theme, multi-page portfolio featuring a gothic-minimal design system: p
 ├── astro.config.mjs
 └── package.json
 ```
-
-## Design System
-
-| Token      | Value     | Role                          |
-| :--------- | :-------- | :---------------------------- |
-| `ink-black`| `#000000` | Canvas                        |
-| `bone`     | `#ffffff` | Headings                      |
-| `parchment`| `#e8e4dc` | Body copy                     |
-| `faded`    | `#a3a3a3` | Muted labels                  |
-| `gold`     | `#c9a86a` | Ornaments, hover accents      |
-| `oxblood`  | `#4a0404` | Selections, active borders    |
-| `charcoal` | `#242424` | Hairline borders              |
-
-Hard 90° corners only; all interactive accents transition over 200ms.
-
-## Commands
-
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `npm install`     | Install dependencies                         |
-| `npm run dev`     | Start dev server at `localhost:4321`         |
-| `npm run build`   | Production build to `./dist/`                |
-| `npm run preview` | Preview the production build                 |
-| `npm run astro …` | Run Astro CLI commands                       |
 
 ## License
 
