@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/readme-mark.png" alt="Quotex N monogram" width="128" />
+  <img src="public/apple-touch-icon.png" alt="Quotex N monogram" width="128" />
 </div>
 
 <p align="center">
