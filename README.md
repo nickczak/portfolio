@@ -1,43 +1,94 @@
-# Astro Starter Kit: Minimal
+<div align="center">
+  <img src="public/apple-touch-icon.png" alt="Quotex N monogram" width="128" />
+</div>
 
-```sh
-npm create astro@latest -- --template minimal
-```
+<h1 align="center">Nicholas Sobchak — Portfolio</h1>
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+<p align="center">
+  <em>A dark-academia developer portfolio built with Astro, TypeScript, and Tailwind CSS.</em>
+</p>
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Overview
+
+A single-theme, multi-page portfolio featuring a gothic-minimal design system: pitch-black canvas, parchment typography, oxblood accents, and generative ornamental rules. GitHub statistics are streamed at build time, and the resume is rendered in-theme from live data.
+
+**Pages**
+
+| Route       | Contents                                                        |
+| :---------- | :-------------------------------------------------------------- |
+| `/`         | Hero, professional experience (ZipTip), tech stack              |
+| `/projects` | Featured case studies — [quickquill.ink](https://github.com/nickczak/QuickQuill-Dictionary-SpellChecker), [On The Money](https://github.com/nickczak/OnTheMoney-Finance-Tracker) |
+| `/resume`   | Full résumé rendered in the site theme + PDF download           |
+
+## Tech Stack
+
+- **[Astro](https://astro.build)** — static site generation, zero client JS
+- **TypeScript** — strict mode throughout
+- **[Tailwind CSS v4](https://tailwindcss.com)** — theme tokens via `@theme`, Vite plugin
+- **Fontsource** — self-hosted Cinzel Variable, Cormorant Variable, JetBrains Mono Variable, and Quotex
+- **GitHub REST API** — build-time streaming of public repos, commits, stars, and followers
+- **ImageMagick** — generated favicon/apple-touch icon from the Quotex typeface
+
+## Project Structure
 
 ```text
 /
 ├── public/
+│   ├── fonts/
+│   │   └── Quotex.otf          # Display face for the "N" monogram
+│   ├── footer-rule.png         # Ornament used as the footer separator
+│   ├── heist-logo.jpg          # Hero crest
+│   ├── ziptip-logo.png         # ZipTip mark (experience section)
+│   ├── favicon.png             # Quotex "N" on black
+│   └── apple-touch-icon.png    # iOS bookmark icon
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/
+│   │   ├── graphics/
+│   │   │   └── GothicArch.astro # Lancet-window ornament (hero watermark)
+│   │   ├── Divider.astro        # ✦ hairline ornament
+│   │   ├── FeaturedProducts.astro
+│   │   ├── Footer.astro
+│   │   ├── Hero.astro
+│   │   ├── NavBar.astro
+│   │   └── ProductCard.astro
+│   ├── layouts/
+│   │   └── Layout.astro         # Head, fonts, meta, grain overlay
+│   ├── pages/
+│   │   ├── index.astro
+│   │   ├── projects.astro
+│   │   └── resume.astro
+│   └── styles/
+│       └── global.css           # @theme tokens, base styles, film grain
+├── astro.config.mjs
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Design System
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Token      | Value     | Role                          |
+| :--------- | :-------- | :---------------------------- |
+| `ink-black`| `#000000` | Canvas                        |
+| `bone`     | `#ffffff` | Headings                      |
+| `parchment`| `#e8e4dc` | Body copy                     |
+| `faded`    | `#a3a3a3` | Muted labels                  |
+| `gold`     | `#c9a86a` | Ornaments, hover accents      |
+| `oxblood`  | `#4a0404` | Selections, active borders    |
+| `charcoal` | `#242424` | Hairline borders              |
 
-Any static assets, like images, can be placed in the `public/` directory.
+Hard 90° corners only; all interactive accents transition over 200ms.
 
-## 🧞 Commands
+## Commands
 
-All commands are run from the root of the project, from a terminal:
+| Command           | Action                                       |
+| :---------------- | :------------------------------------------- |
+| `npm install`     | Install dependencies                         |
+| `npm run dev`     | Start dev server at `localhost:4321`         |
+| `npm run build`   | Production build to `./dist/`                |
+| `npm run preview` | Preview the production build                 |
+| `npm run astro …` | Run Astro CLI commands                       |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## License
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+© 2026 Nicholas Sobchak. All rights reserved.
