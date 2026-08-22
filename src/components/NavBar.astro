@@ -4,6 +4,9 @@ interface Tab {
   href: string;
 }
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const u = (path: string) => `${BASE}${path}`;
+
 const tabs: Tab[] = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
@@ -11,13 +14,17 @@ const tabs: Tab[] = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
-const isActive = (href: string) =>
-  (href.replace(/\/$/, "") || "/") === currentPath;
+const cleanPath = BASE !== "" && currentPath.startsWith(BASE)
+  ? currentPath.slice(BASE.length) || "/"
+  : currentPath;
+const isActive = (href: string) => href === cleanPath;
+
+const ruleSrc = `${import.meta.env.BASE_URL}/footer-rule.png`;
 ---
 
 <header class="relative sticky top-0 z-50 border-b border-charcoal bg-ink-black">
   <a
-    href="/"
+    href={u("/")}
     aria-label="Home"
     class="absolute left-4 top-1/2 -translate-y-1/2 md:left-6"
   >
@@ -33,7 +40,7 @@ const isActive = (href: string) =>
       {
         tabs.map(({ label, href }) => (
           <a
-            href={href}
+            href={u(href)}
             aria-current={isActive(href) ? "page" : undefined}
             class={`flex items-center px-1.5 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-200 md:px-4 md:text-[11px] md:tracking-[0.25em] ${
               isActive(href)
@@ -54,7 +61,7 @@ const isActive = (href: string) =>
   >
     <div class="h-px w-full bg-parchment opacity-70"></div>
     <img
-      src="/footer-rule.png"
+      src={ruleSrc}
       alt=""
       loading="lazy"
       class="mx-auto -mt-px block h-auto w-full max-w-xl -scale-y-100 select-none opacity-70"
