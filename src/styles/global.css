@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cinzel Variable", "Cormorant Garamond", Georgia, serif;
+  --font-gothic: "Times New Roman", Times, Georgia, serif;
+  --font-academic: "Cormorant Variable", Georgia, serif;
+  --font-quotex: "Quotex", "Cinzel Variable", Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+
+  /* Dark academia palette — aged, warm, candlelit */
+  --color-ink-black: #000000;
+  --color-charcoal: #242424;
+  --color-graphite: #0a0a0a;
+  --color-parchment: #e8e4dc;
+  --color-bone: #ffffff;
+  --color-faded: #a3a3a3;
+  --color-gold: #c9a86a;
+  --color-oxblood: #4a0404;
+  --color-crimson: #8e2222;
+}
+
+@font-face {
+  font-family: "Quotex";
+  src: url("/fonts/Quotex.otf") format("opentype");
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-ink-black);
+    color-scheme: dark;
+    scrollbar-color: var(--color-charcoal) var(--color-ink-black);
+  }
+
+  body {
+    @apply bg-ink-black font-mono text-parchment antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-oxblood);
+    color: var(--color-bone);
+  }
+}
+
+/* Film-grain / textured technical paper overlay. Pure CSS via inline SVG turbulence. */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
