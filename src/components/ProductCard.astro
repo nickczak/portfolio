@@ -1,56 +1,85 @@
 ---
 interface Props {
   title: string;
-  badge: string;
   description: string;
   stack: string[];
   href?: string;
+  gif?: string;
+  liveHref?: string;
 }
 
-const { title, badge, description, stack, href = "#" } = Astro.props;
+const { title, description, stack, href = "#", gif, liveHref } = Astro.props;
+
+const gifSrc = gif ? `${import.meta.env.BASE_URL}/${gif}` : undefined;
 ---
 
-<article class="group relative flex flex-col gap-8 p-8 transition-colors duration-200 hover:bg-charcoal/20 md:p-10">
+<article class="group relative flex flex-col gap-8 p-6 transition-colors duration-200 hover:bg-charcoal/20 md:flex-row md:gap-10 md:p-10">
   <span class="absolute left-0 top-0 h-3 w-3 border-l border-t border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
   <span class="absolute right-0 top-0 h-3 w-3 border-r border-t border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
   <span class="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
   <span class="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
 
-  <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+  <div class="flex shrink-0 flex-col gap-5 md:w-[58%]">
     <h3 class="font-gothic text-2xl text-bone md:text-3xl">
       {title}
     </h3>
-    <span class="border border-charcoal px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-faded">
-      [ {badge} ]
-    </span>
-  </div>
 
-  <p class="font-academic text-lg leading-relaxed text-parchment md:text-xl">
-    {description}
-  </p>
+    {
+      gifSrc && (
+        <img
+          src={gifSrc}
+          alt={`${title} demo capture`}
+          width={800}
+          height={450}
+          loading="lazy"
+          class="w-full border border-charcoal object-cover"
+        />
+      )
+    }
 
-  <div>
-    <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-gold">
-      Languages &amp; Frameworks
-    </p>
-    <ul class="space-y-2 font-mono text-sm text-parchment/90">
+    <div class="flex flex-wrap gap-4">
+      <a
+        href={href}
+        target={href.startsWith("http") ? "_blank" : undefined}
+        rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+        class="border border-charcoal px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-faded transition-colors duration-200 hover:border-gold hover:bg-gold/10 hover:text-gold"
+      >
+        [ Source Code ]
+      </a>
       {
-        stack.map((item) => (
-          <li class="flex items-baseline gap-3">
-            <span class="text-faded" aria-hidden="true">-</span>
-            {item}
-          </li>
-        ))
+        liveHref && (
+          <a
+            href={liveHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border border-gold/60 px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-gold transition-colors duration-200 hover:bg-gold/10"
+          >
+            [ Live Site ]
+          </a>
+        )
       }
-    </ul>
+    </div>
   </div>
 
-  <a
-    href={href}
-    target={href.startsWith("http") ? "_blank" : undefined}
-    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-    class="mt-auto w-fit border border-charcoal px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-faded hover:border-gold hover:bg-gold/10 hover:text-gold"
-  >
-    [ View Live System ]
-  </a>
+  <div class="flex min-w-0 flex-1 flex-col gap-6">
+    <p class="font-academic text-lg leading-relaxed text-parchment md:text-xl">
+      {description}
+    </p>
+
+    <div>
+      <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-gold">
+        Languages &amp; Frameworks
+      </p>
+      <ul class="space-y-2 font-mono text-sm text-parchment/90">
+        {
+          stack.map((item) => (
+            <li class="flex items-baseline gap-3">
+              <span class="text-faded" aria-hidden="true">-</span>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </article>

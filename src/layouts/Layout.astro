@@ -3,6 +3,7 @@ import "@fontsource-variable/cinzel";
 import "@fontsource-variable/cormorant";
 import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.css";
+import GothicArch from "../components/graphics/GothicArch.astro";
 
 interface Props {
   title?: string;
@@ -31,8 +32,36 @@ const {
     <meta property="og:type" content="website" />
     <title>{title}</title>
   </head>
-  <body class="min-h-full bg-ink-black text-parchment">
-    <slot />
+  <body class="relative min-h-full bg-ink-black text-parchment">
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-28 top-20 z-0 flex items-stretch justify-between gap-32 px-16 opacity-[0.05]"
+      aria-hidden="true"
+    >
+      <div class="flex w-fit flex-col">
+        <GothicArch class="h-[420px] w-auto text-gold" />
+        <div class="relative grow self-stretch -mt-2">
+          <span class="absolute inset-y-0 left-[12.5%] w-[1.5px] bg-gold"></span>
+          <span class="absolute inset-y-0 left-[22.5%] w-[1.5px] bg-gold"></span>
+          <span class="absolute inset-y-0 left-[49%] w-[1.5px] bg-gold"></span>
+          <span class="absolute inset-y-0 right-[22.5%] w-[1.5px] bg-gold"></span>
+          <span class="absolute inset-y-0 right-[12.5%] w-[1.5px] bg-gold"></span>
+        </div>
+      </div>
+
+      <div class="hidden w-fit flex-col sm:flex">
+        <GothicArch class="h-[380px] w-auto text-gold" />
+        <div class="relative grow self-stretch -mt-2">
+          <span class="absolute inset-y-0 left-[12.5%] w-[1.5px] bg-gold"></span>
+          <span class="absolute inset-y-0 left-[22.5%] w-[1.5px] bg-gold"></span>
+          <span class="absolute inset-y-0 left-[49%] w-[1.5px] bg-gold"></span>
+          <span class="absolute inset-y-0 right-[22.5%] w-[1.5px] bg-gold"></span>
+          <span class="absolute inset-y-0 right-[12.5%] w-[1.5px] bg-gold"></span>
+        </div>
+      </div>
+    </div>
+    <div class="relative z-10">
+      <slot />
+    </div>
     <div class="grain-overlay" aria-hidden="true"></div>
   </body>
 </html>

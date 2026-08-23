@@ -1,6 +1,5 @@
 ---
 import Divider from "./Divider.astro";
-import GothicArch from "./graphics/GothicArch.astro";
 
 const socials = [
   {
@@ -47,22 +46,14 @@ const skills = [
 ];
 ---
 
-<section class="relative mx-auto w-full max-w-5xl flex-1 overflow-hidden px-6 py-20 md:px-10 md:py-28">
-  <div
-    class="pointer-events-none absolute inset-x-0 top-0 flex justify-center gap-32 opacity-[0.05]"
-    aria-hidden="true"
-  >
-    <GothicArch class="h-[420px] w-auto translate-y-2 text-gold" />
-    <GothicArch class="hidden h-[380px] w-auto translate-y-10 text-gold sm:block" />
-  </div>
-
+<section class="relative mx-auto w-full max-w-5xl flex-1 overflow-hidden px-6 pb-10 pt-12 md:px-10 md:pb-14 md:pt-24">
   <div class="relative">
     <img
       src={`${import.meta.env.BASE_URL}/heist-logo.jpg`}
       alt="Heist crest"
       width={1125}
       height={1493}
-      class="float-right mb-6 ml-6 h-44 w-44 rounded-full object-cover object-top sm:h-56 sm:w-56 md:mb-8 md:ml-10 md:h-80 md:w-80 lg:h-[22rem] lg:w-[22rem]"
+      class="float-right mb-4 ml-4 h-32 w-32 rounded-full object-cover object-top sm:h-56 sm:w-56 md:mb-8 md:ml-10 md:h-80 md:w-80 lg:h-[22rem] lg:w-[22rem]"
     />
 
     <p class="mb-6 font-mono text-[11px] uppercase tracking-[0.35em] text-gold/80">
@@ -74,8 +65,8 @@ const skills = [
     </h1>
 
     <p class="mt-8 max-w-xl font-academic text-xl italic leading-relaxed text-parchment md:text-2xl">
-      Full-Stack Engineer specializing in resilient system architecture and
-      independent product delivery.
+      Building Full-Stack applications. Serving solutions in ethical
+      technology.
     </p>
 
     <nav aria-label="Social links" class="mt-10 flex items-center gap-4">
@@ -87,7 +78,7 @@ const skills = [
             rel="noopener noreferrer"
             aria-label={label}
             title={label}
-            class="flex h-12 w-12 items-center justify-center border border-charcoal text-faded hover:border-gold hover:bg-gold/10 hover:text-gold"
+            class="flex h-12 w-12 items-center justify-center text-faded transition-colors hover:text-gold"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
               <path d={path} />
@@ -102,11 +93,6 @@ const skills = [
 </section>
 
 <section class="mx-auto w-full max-w-5xl px-6 pb-14 md:px-10" aria-label="Professional experience">
-  <div class="pb-6">
-    <h2 class="font-gothic text-2xl text-bone md:text-3xl">
-      Professional Experience
-    </h2>
-  </div>
   <Divider />
 
   <div class="mt-5 flex items-center gap-6 border border-charcoal p-6 transition-colors duration-200 hover:bg-charcoal/20 md:gap-8 md:p-8">
@@ -142,19 +128,11 @@ const skills = [
 </section>
 
 <section class="mx-auto w-full max-w-5xl" aria-label="Tech stack">
-  <div class="mx-auto w-full max-w-5xl px-6 pb-10 pt-2 sm:px-10">
-    <div class="flex items-end justify-between gap-6 pb-6">
-      <h2 class="font-gothic text-2xl text-bone md:text-3xl">
-        Tech Stack
-      </h2>
-      <span class="hidden font-mono text-[10px] uppercase tracking-[0.3em] text-faded sm:block">
-        [ LANGUAGES · FRAMEWORKS · SERVICES ]
-      </span>
-    </div>
+  <div class="mx-auto w-full max-w-5xl px-6 pb-3 sm:px-10">
     <Divider />
   </div>
 
-  <div class="grid grid-cols-1 divide-y divide-charcoal sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+  <div class="grid grid-cols-1 divide-y divide-charcoal px-6 pb-14 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-0">
       {
         skills.map(({ category, items }) => (
           <div class="pb-6 pt-1 sm:px-8 sm:first:pl-0 sm:last:pr-0">
@@ -168,4 +146,27 @@ const skills = [
         ))
       }
     </div>
+</section>
+
+<section class="mx-auto w-full max-w-5xl px-6 pb-14 sm:px-10" aria-label="Contact">
+  <Divider />
+  <div class="flex flex-col items-center gap-8 pt-10 text-center md:flex-row md:items-end md:justify-between md:text-left">
+    <div>
+      <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ Contact ]
+      </p>
+      <p class="mt-4 font-gothic text-2xl text-bone md:text-3xl">
+        Let's build something together.
+      </p>
+      <p class="mt-3 font-mono text-sm tracking-wide text-faded">
+        nlsobchak@gmail.com · Eldersburg, MD
+      </p>
+    </div>
+    <a
+      href="mailto:nlsobchak@gmail.com"
+      class="border border-charcoal px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-faded transition-colors duration-200 hover:border-gold hover:bg-gold/10 hover:text-gold"
+    >
+      [ Get In Touch ]
+    </a>
+  </div>
 </section>
