@@ -13,7 +13,7 @@ const { title, description, stack, href = "#", gif, liveHref } = Astro.props;
 const gifSrc = gif ? `${import.meta.env.BASE_URL}/${gif}` : undefined;
 ---
 
-<article class="group relative flex flex-col gap-8 p-6 transition-colors duration-200 hover:bg-charcoal/20 md:flex-row md:gap-10 md:p-10">
+<article class="group relative flex flex-col gap-8 border border-charcoal p-6 transition-colors duration-200 hover:bg-charcoal/20 md:flex-row md:gap-10 md:p-10">
   <span class="absolute left-0 top-0 h-3 w-3 border-l border-t border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
   <span class="absolute right-0 top-0 h-3 w-3 border-r border-t border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
   <span class="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
