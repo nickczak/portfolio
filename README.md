@@ -10,7 +10,7 @@
 
 ## Overview
 
-Static pages created with [Astro](https://astro.build) and styled with [Tailwind CSS v4](https://tailwindcss.com). The site is fully static, with zero client-side JavaScript, and is hosted on GitHub Pages.
+Static portfolio site built with [Astro](https://astro.build) and styled with [Tailwind CSS v4](https://tailwindcss.com). Zero client-side JavaScript, hosted on GitHub Pages.
 
 **Pages**
 
@@ -23,11 +23,11 @@ Static pages created with [Astro](https://astro.build) and styled with [Tailwind
 
 ## Tech Stack
 
-- **[Astro](https://astro.build)** — static site generation, zero client JS
-- **TypeScript** — strict mode throughout
-- **[Tailwind CSS v4](https://tailwindcss.com)** — theme tokens via `@theme`, Vite plugin
-- **Fontsource** — self-hosted Cinzel Variable, Cormorant Variable, JetBrains Mono Variable, and Quotex
-- **Content Collections** — Markdown-based project case studies with schema validation
+- **[Astro](https://astro.build)** — static site generation
+- **TypeScript**
+- **[Tailwind CSS v4](https://tailwindcss.com)** — theme tokens via `@theme`
+- **Fontsource** — self-hosted Cinzel Variable, Cormorant Variable, JetBrains Mono Variable, Quotex
+- **Content Collections** — Markdown-based project case studies
 
 ## Project Structure
 
@@ -35,14 +35,14 @@ Static pages created with [Astro](https://astro.build) and styled with [Tailwind
 /
 ├── public/
 │   ├── fonts/
-│   │   └── Quotex.otf          # Display face for the "N" monogram
-│   ├── footer-rule.png         # Ornament used as the footer separator
-│   ├── heist-logo.jpg          # Hero crest
-│   ├── ziptip-logo.png         # ZipTip mark (experience section)
-│   ├── quickquill-demo.gif     # QuickQuill demo capture
-│   ├── onthemoney-demo.gif     # On The Money demo capture
-│   ├── favicon.png             # Quotex "N" on black
-│   └── apple-touch-icon.png    # iOS bookmark icon
+│   │   └── Quotex.otf
+│   ├── footer-rule.png
+│   ├── heist-logo.jpg
+│   ├── ziptip-logo.png
+│   ├── quickquill-demo.gif
+│   ├── onthemoney-demo.gif
+│   ├── favicon.png
+│   └── apple-touch-icon.png
 ├── src/
 │   ├── components/
 │   │   ├── graphics/
@@ -56,7 +56,7 @@ Static pages created with [Astro](https://astro.build) and styled with [Tailwind
 │   │   ├── NavBar.astro
 │   │   └── ProductCard.astro
 │   ├── content/
-│   │   └── projects/           # Markdown case studies
+│   │   └── projects/
 │   │       ├── quickquill.md
 │   │       └── on-the-money.md
 │   ├── layouts/
@@ -65,12 +65,12 @@ Static pages created with [Astro](https://astro.build) and styled with [Tailwind
 │   │   ├── index.astro
 │   │   ├── projects.astro
 │   │   ├── projects/
-│   │   │   └── [slug].astro    # Dynamic case study pages
+│   │   │   └── [slug].astro
 │   │   ├── resume.astro
 │   │   └── ziptip.astro
 │   └── styles/
 │       └── global.css
-├── content.config.ts           # Content collection schema
+├── content.config.ts
 ├── astro.config.mjs
 └── package.json
 ```
