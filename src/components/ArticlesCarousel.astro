@@ -7,7 +7,7 @@ const projects = await getCollection("projects");
 
 <section class="mx-auto w-full max-w-5xl px-6 pb-14 sm:px-10" aria-label="Articles">
   <Divider />
-  <p class="mt-5 font-mono text-xs uppercase tracking-[0.3em] text-gold">
+  <p class="mt-5 text-center font-mono text-xs uppercase tracking-[0.3em] text-gold md:text-left">
     [ Articles ]
   </p>
 
@@ -23,7 +23,7 @@ const projects = await getCollection("projects");
           <span class="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true" />
           <span class="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true" />
 
-          <h3 class="font-gothic text-xl text-bone transition-colors duration-200 group-hover:text-gold md:text-2xl">
+          <h3 class="font-gothic text-lg text-bone transition-colors duration-200 group-hover:text-gold md:text-xl">
             {project.data.title}
           </h3>
 

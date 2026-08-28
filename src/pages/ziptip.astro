@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import Divider from "../components/Divider.astro";
+---
+
+<Layout title="ZIPTIP — NICHOLAS SOBCHAK">
+  <NavBar />
+  <main class="mx-auto w-full max-w-4xl px-6 pb-16 pt-16 md:px-10 md:pb-32 md:pt-24">
+    <header class="mb-12 flex flex-col items-center gap-6 text-center">
+      <img
+        src={`${import.meta.env.BASE_URL}/ziptip-logo.png`}
+        alt="ZipTip logo"
+        width={499}
+        height={504}
+        class="h-48 w-48 object-contain md:h-64 md:w-64"
+      />
+      <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        Cashless Tipping for Hospitality Workers
+      </p>
+      <a
+        href="https://ziptip.io"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="border border-gold/60 px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-gold transition-colors duration-200 hover:bg-gold/10"
+      >
+        [ Visit ZipTip ]
+      </a>
+    </header>
+
+    <Divider />
+
+    <section class="mt-10">
+      <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ What Is ZipTip? ]
+      </p>
+      <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        ZipTip is a cashless tipping platform built for the hospitality industry.
+        It makes it easy for customers to tip servers, bartenders, baristas, and
+        other service workers instantly — no cash, no friction. Workers receive
+        tips directly, and businesses get a seamless system that fits into their
+        existing workflow.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ The Mission ]
+      </p>
+      <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        Hospitality workers rely on tips as a significant portion of their income,
+        yet cash tipping has been declining for years. ZipTip exists to close that
+        gap — making tipping as easy as tapping a phone, so workers get fairly
+        compensated for the service they provide.
+      </p>
+    </section>
+
+    <section class="mt-12">
+      <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ My Role ]
+      </p>
+      <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        As a Founding Software Developer, I've been involved in ZipTip since
+        December 2025. I've contributed across the full stack — building and
+        maintaining the backend services that handle payment processing and tip
+        distribution, developing the customer-facing interface, and working
+        closely with the team to shape the technical architecture as the
+        product evolves.
+      </p>
+      <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        It's been a unique experience building a product from the ground up —
+        making foundational technical decisions that will scale with the
+        business, and seeing direct impact on real workers who depend on the
+        platform.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>

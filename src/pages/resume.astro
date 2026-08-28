@@ -96,8 +96,10 @@ const education: Entry[] = [
       </a>
     </div>
 
-    <p class="font-mono text-[11px] leading-relaxed tracking-[0.15em] text-faded uppercase">
-      {contact.join("  //  ")}
+    <p class="flex flex-col gap-1 font-mono text-[11px] leading-relaxed tracking-[0.15em] text-faded uppercase sm:flex-row sm:flex-wrap sm:gap-x-2">
+      {contact.map((item, i) => (
+        <span>{item}{i < contact.length - 1 && <span class="hidden sm:inline">  //  </span>}</span>
+      ))}
     </p>
 
     <section class="mt-12"><div class="mb-8"><Divider /></div>

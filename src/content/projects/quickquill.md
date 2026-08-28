@@ -1,5 +1,6 @@
 ---
-title: "QuickQuill"
+name: "QuickQuill"
+title: "Why I Built a Writing Tool for Distraction-Free Authors"
 description: "A distraction-free writing environment engineered for long-form authors who demand ownership of their work. Real-time collaborative editing runs on a CRDT sync layer backed by a durable Postgres event log, ensuring zero content loss under any failure mode."
 stack: ["TypeScript / Angular 21", "Java / Spring Boot", "PostgreSQL", "C++17 / Crow", "Docker"]
 href: "https://github.com/nickczak/QuickQuill-Dictionary-SpellChecker"

@@ -1,8 +1,11 @@
 ---
-title: "On The Money"
+name: "On The Money"
+title: "Stop Splitting Finances Across Five Apps: Build Your Own"
 description: "A full-stack personal finance system that tracks accounts, transactions, net worth, credit score, and live market data through a Spring Boot REST API backed by PostgreSQL. A native iOS client built with Expo/TypeScript drives the interface, while an optional C++17 engine runs Monte Carlo simulations for retirement projections."
 stack: ["Java 17 / Spring Boot 3.3", "TypeScript / Expo (React Native)", "PostgreSQL", "C++17 / Monte Carlo Engine", "Docker"]
 gif: "onthemoney-demo.gif"
+href: "https://github.com/nickczak/OnTheMoney-Finance-Tracker"
+liveHref: "https://onthemoney.site"
 ---
 
 ## The Problem

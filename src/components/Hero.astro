@@ -96,7 +96,11 @@ const skills = [
 <section class="mx-auto w-full max-w-5xl px-6 pb-14 md:px-10" aria-label="Professional experience">
   <Divider />
 
-  <div class="mt-5 flex items-center gap-6 border border-charcoal p-6 transition-colors duration-200 hover:bg-charcoal/20 md:gap-8 md:p-8">
+  <div
+    class="mt-5 flex items-center gap-6 border border-charcoal p-6 transition-colors duration-200 hover:bg-charcoal/20 md:gap-8 md:p-8 cursor-pointer"
+    data-url={`${import.meta.env.BASE_URL}/ziptip`}
+    onclick="if(event.target.closest('a'))return;window.location=this.dataset.url"
+  >
     <a
       href="https://ziptip.io"
       target="_blank"
@@ -136,7 +140,7 @@ const skills = [
   <div class="grid grid-cols-1 divide-y divide-charcoal px-6 pb-14 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-0">
       {
         skills.map(({ category, items }) => (
-          <div class="pb-6 pt-1 sm:px-8 sm:first:pl-0 sm:last:pr-0">
+          <div class="pb-6 pt-1 text-center sm:text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
             <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
               [ {category} ]
             </p>

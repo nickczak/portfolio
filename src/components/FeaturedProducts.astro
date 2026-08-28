@@ -18,7 +18,7 @@ const projects = await getCollection("projects");
     {projects.map((project) => (
       <ProductCard
         slug={project.id}
-        title={project.data.title}
+        name={project.data.name}
         description={project.data.description}
         stack={project.data.stack}
         href={project.data.href}

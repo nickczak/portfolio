@@ -1,7 +1,7 @@
 ---
 interface Props {
   slug: string;
-  title: string;
+  name: string;
   description: string;
   stack: string[];
   href?: string;
@@ -9,21 +9,25 @@ interface Props {
   liveHref?: string;
 }
 
-const { slug, title, description, stack, href = "#", gif, liveHref } = Astro.props;
+const { slug, name, description, stack, href = "#", gif, liveHref } = Astro.props;
 
 const gifSrc = gif ? `${import.meta.env.BASE_URL}/${gif}` : undefined;
 const projectUrl = `${import.meta.env.BASE_URL}/projects/${slug}`;
 ---
 
-<article class="group relative flex flex-col gap-8 border border-charcoal p-6 transition-colors duration-200 hover:bg-charcoal/20 md:flex-row md:gap-10 md:p-10">
+<article
+  class="group relative flex flex-col gap-8 border border-charcoal p-6 transition-colors duration-200 hover:bg-charcoal/20 md:flex-row md:gap-10 md:p-10 cursor-pointer"
+  data-url={projectUrl}
+  onclick="if(event.target.closest('a'))return;window.location=this.dataset.url"
+>
   <span class="absolute left-0 top-0 h-3 w-3 border-l border-t border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
   <span class="absolute right-0 top-0 h-3 w-3 border-r border-t border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
   <span class="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
   <span class="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-faded/40 transition-colors duration-200 group-hover:border-gold" aria-hidden="true"></span>
 
   <div class="flex shrink-0 flex-col gap-5 md:w-[58%]">
-    <a href={projectUrl} class="font-gothic text-2xl text-bone transition-colors duration-200 hover:text-gold md:text-3xl">
-      {title}
+    <a href={projectUrl} class="font-gothic text-3xl text-bone transition-colors duration-200 hover:text-gold md:text-4xl">
+      {name}
     </a>
 
     {
@@ -31,7 +35,7 @@ const projectUrl = `${import.meta.env.BASE_URL}/projects/${slug}`;
         <a href={projectUrl}>
           <img
             src={gifSrc}
-            alt={`${title} demo capture`}
+            alt={`${name} demo capture`}
             width={800}
             height={450}
             loading="lazy"
