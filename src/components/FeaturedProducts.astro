@@ -1,31 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import ProductCard from "./ProductCard.astro";
 
-const products = [
-  {
-    title: "QuickQuill",
-    href: "https://github.com/nickczak/QuickQuill-Dictionary-SpellChecker",
-    description:
-      "A distraction-free writing environment engineered for long-form authors who demand ownership of their work. Real-time collaborative editing runs on a CRDT sync layer backed by a durable Postgres event log, ensuring zero content loss under any failure mode.",
-    stack: ["TypeScript / Angular 21", "Java / Spring Boot", "PostgreSQL", "C++17 / Crow", "Docker"],
-    gif: "quickquill-demo.gif",
-    liveHref: "https://quickquill.ink",
-  },
-  {
-    title: "On The Money",
-    href: "https://github.com/nickczak/OnTheMoney-Finance-Tracker",
-    description:
-      "A full-stack personal finance system that tracks accounts, transactions, net worth, credit score, and live market data through a Spring Boot REST API backed by PostgreSQL. A native iOS client built with Expo/TypeScript drives the interface, while an optional C++17 engine runs Monte Carlo simulations for retirement projections.",
-    stack: [
-      "Java 17 / Spring Boot 3.3",
-      "TypeScript / Expo (React Native)",
-      "PostgreSQL",
-      "C++17 // Monte Carlo Engine",
-      "Docker",
-    ],
-    gif: "onthemoney-demo.gif",
-  },
-];
+const projects = await getCollection("projects");
 ---
 
 <section class="mx-auto w-full max-w-5xl px-6 pb-16 pt-16 md:px-10 md:pb-32 md:pt-24">
@@ -38,6 +15,16 @@ const products = [
   </div>
 
   <div class="grid grid-cols-1 gap-10 md:gap-16">
-    {products.map((product) => <ProductCard {...product} />)}
+    {projects.map((project) => (
+      <ProductCard
+        slug={project.id}
+        title={project.data.title}
+        description={project.data.description}
+        stack={project.data.stack}
+        href={project.data.href}
+        gif={project.data.gif}
+        liveHref={project.data.liveHref}
+      />
+    ))}
   </div>
 </section>
