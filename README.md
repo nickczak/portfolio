@@ -14,8 +14,11 @@ Static pages created with [Astro](https://astro.build) and styled with [Tailwind
 
 **Pages**
 
-- `/` — Hero, professional experience (ZipTip), tech stack
-- `/projects` — Featured case studies: [quickquill.ink](https://github.com/nickczak/QuickQuill-Dictionary-SpellChecker) and [On The Money](https://github.com/nickczak/OnTheMoney-Finance-Tracker)
+- `/` — Hero, professional experience (ZipTip), tech stack, articles carousel
+- `/projects` — Featured case studies with clickable cards
+- `/projects/quickquill` — "Why I Built a Writing Tool for Distraction-Free Authors"
+- `/projects/on-the-money` — "Stop Splitting Finances Across Five Apps: Build Your Own"
+- `/ziptip` — ZipTip overview, mission, and founding developer role
 - `/resume` — Full résumé rendered in the site theme + PDF download
 
 ## Tech Stack
@@ -24,8 +27,7 @@ Static pages created with [Astro](https://astro.build) and styled with [Tailwind
 - **TypeScript** — strict mode throughout
 - **[Tailwind CSS v4](https://tailwindcss.com)** — theme tokens via `@theme`, Vite plugin
 - **Fontsource** — self-hosted Cinzel Variable, Cormorant Variable, JetBrains Mono Variable, and Quotex
-- **GitHub REST API** — build-time streaming of public repos, commits, stars, and followers
-- **ImageMagick** — generated favicon/apple-touch icon from the Quotex typeface
+- **Content Collections** — Markdown-based project case studies with schema validation
 
 ## Project Structure
 
@@ -37,26 +39,38 @@ Static pages created with [Astro](https://astro.build) and styled with [Tailwind
 │   ├── footer-rule.png         # Ornament used as the footer separator
 │   ├── heist-logo.jpg          # Hero crest
 │   ├── ziptip-logo.png         # ZipTip mark (experience section)
+│   ├── quickquill-demo.gif     # QuickQuill demo capture
+│   ├── onthemoney-demo.gif     # On The Money demo capture
 │   ├── favicon.png             # Quotex "N" on black
 │   └── apple-touch-icon.png    # iOS bookmark icon
 ├── src/
 │   ├── components/
 │   │   ├── graphics/
-│   │   │   └── GothicArch.astro # Lancet-window ornament (hero watermark)
-│   │   ├── Divider.astro        # ✦ hairline ornament
+│   │   │   └── GothicArch.astro
+│   │   ├── ArticlesCarousel.astro
+│   │   ├── CaseStudyLayout.astro
+│   │   ├── Divider.astro
 │   │   ├── FeaturedProducts.astro
 │   │   ├── Footer.astro
 │   │   ├── Hero.astro
 │   │   ├── NavBar.astro
 │   │   └── ProductCard.astro
+│   ├── content/
+│   │   └── projects/           # Markdown case studies
+│   │       ├── quickquill.md
+│   │       └── on-the-money.md
 │   ├── layouts/
-│   │   └── Layout.astro         # Head, fonts, meta, grain overlay
+│   │   └── Layout.astro
 │   ├── pages/
 │   │   ├── index.astro
 │   │   ├── projects.astro
-│   │   └── resume.astro
+│   │   ├── projects/
+│   │   │   └── [slug].astro    # Dynamic case study pages
+│   │   ├── resume.astro
+│   │   └── ziptip.astro
 │   └── styles/
-│       └── global.css           # @theme tokens, base styles, film grain
+│       └── global.css
+├── content.config.ts           # Content collection schema
 ├── astro.config.mjs
 └── package.json
 ```
