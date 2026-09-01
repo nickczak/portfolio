@@ -27,6 +27,10 @@ const projects = await getCollection("projects");
             {project.data.title}
           </h3>
 
+          <p class="font-mono text-[10px] uppercase tracking-widest text-faded">
+            {project.data.readingTime} min read <span class="text-parchment/50">&middot; {project.data.date}</span>
+          </p>
+
           <p class="line-clamp-3 font-academic text-sm leading-relaxed text-parchment/80 md:text-base">
             {project.data.description}
           </p>

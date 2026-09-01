@@ -9,6 +9,8 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     stack: z.array(z.string()),
+    readingTime: z.number(),
+    date: z.string(),
     href: z.string().optional(),
     gif: z.string().optional(),
     liveHref: z.string().optional(),

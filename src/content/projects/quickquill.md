@@ -6,6 +6,8 @@ stack: ["TypeScript / Angular 21", "Java / Spring Boot", "PostgreSQL", "C++17 / 
 href: "https://github.com/nickczak/QuickQuill-Dictionary-SpellChecker"
 gif: "quickquill-demo.gif"
 liveHref: "https://quickquill.ink"
+readingTime: 5
+date: "08.30.2026"
 ---
 
 ## Origin
@@ -46,14 +48,6 @@ This was my first web-hosted project that I've built and maintained in a public 
   - Angular and TypeScript were both new to me — learned how to structure an Angular app and use the CLI to generate components, services, and modules
   - Used Angular's dependency injection to make the frontend more maintainable
   - Learned reactive forms and RxJS for handling asynchronous data streams alongside HttpClient for API calls
-
-## Key Decisions
-
-**C++ for the sync engine.** The CRDT logic is CPU-bound and latency-sensitive. A native service eliminates garbage collection pauses and gives predictable sub-millisecond operation merging, which matters when multiple users are typing simultaneously.
-
-**Event sourcing over state sync.** Storing edits as an immutable event log rather than overwriting document state means every change is auditable, reversible, and recoverable. If a client disconnects mid-edit, the server can replay from the last acknowledged event.
-
-**Angular over lighter frameworks.** For a tool that might grow into a full writing platform, Angular's opinionated structure and dependency injection system pay off at scale. The initial overhead was worth the long-term maintainability.
 
 ## Where It Stands
 
