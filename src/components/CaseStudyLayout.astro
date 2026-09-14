@@ -9,12 +9,13 @@ interface Props {
   stack: string[];
   readingTime: number;
   date: string;
+  docsHref?: string;
   href?: string;
   gif?: string;
   liveHref?: string;
 }
 
-const { title, description, stack, readingTime, date, href, gif, liveHref } = Astro.props;
+const { title, description, stack, readingTime, date, docsHref, href, gif, liveHref } = Astro.props;
 
 const gifSrc = gif ? `${import.meta.env.BASE_URL}/${gif}` : undefined;
 ---
@@ -55,6 +56,16 @@ const gifSrc = gif ? `${import.meta.env.BASE_URL}/${gif}` : undefined;
               class="border border-gold/60 px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-gold transition-colors duration-200 hover:bg-gold/10"
             >
               [ Live Site ]
+            </a>
+          )
+        }
+        {
+          docsHref && (
+            <a
+              href={docsHref}
+              class="border border-charcoal px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-faded transition-colors duration-200 hover:border-gold hover:bg-gold/10 hover:text-gold"
+            >
+              [ Documentation ]
             </a>
           )
         }

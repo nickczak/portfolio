@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from "astro:content";
+import DocsLayout from "../../components/DocsLayout.astro";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  const projects = await getCollection("projects");
+  const projectById = new Map(projects.map((p) => [p.id, p]));
+
+  return docs.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc, project: projectById.get(doc.data.project) },
+  }));
+}
+
+const { doc, project } = Astro.props;
+const { Content } = await render(doc);
+---
+
+<DocsLayout
+  title={doc.data.title}
+  description={doc.data.description}
+  projectTitle={project?.data.title ?? doc.data.project}
+  projectHref={project ? `${import.meta.env.BASE_URL}/projects/${project.id}` : undefined}
+  stack={doc.data.stack}
+  updated={doc.data.updated}
+>
+  <Content />
+</DocsLayout>

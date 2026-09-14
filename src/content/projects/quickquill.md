@@ -36,11 +36,11 @@ I wanted to manually deploy this project to a server that I had access to, so I 
 
 This was my first web-hosted project that I've built and maintained in a public git repo. I've learned a lot about how to build a web application and how to deploy it.
 
-- **C++**
+- **C++ Where Speed Matters** 
   - Learned how to structure a real C++ application and make it configurable with tools like CMake and vcpkg
   - Pushed through the trial and error of class structuring and trade-offs that only come up when building something real
   - Learned about threading to serve multiple requests at once, which was a fun challenge to implement
-- **Java**
+- **Spring Boot**
   - Spring Boot has a lot of "magic" — if you don't learn what's happening under the hood, you'll get lost
   - Got hands-on experience with Spring Data JPA and Hibernate for database interaction
   - Integrated authentication using simple UUID token sessions and BCrypt, with room to grow that side of the application
@@ -48,6 +48,14 @@ This was my first web-hosted project that I've built and maintained in a public 
   - Angular and TypeScript were both new to me — learned how to structure an Angular app and use the CLI to generate components, services, and modules
   - Used Angular's dependency injection to make the frontend more maintainable
   - Learned reactive forms and RxJS for handling asynchronous data streams alongside HttpClient for API calls
+- **Git & GitHub**
+  - This is where I really learned how to use Git and developing a workflow that works for me.
+  - Learned how to use GitHub Actions to automate deployment and testing, which was a huge time saver
+  - I also really got into make my public repos look nice and professional, which I continue to do with all my projects since
+- **Docker**
+  - Learned how to containerize an application and deploy it to a VPS
+  - Learned how to use Docker Compose to manage multiple containers and their dependencies
+  - Learned how to use Docker volumes to persist data across container restarts
 
 ## Where It Stands
 

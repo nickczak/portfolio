@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import Divider from "../components/Divider.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  projectTitle: string;
+  projectHref?: string;
+  stack: string[];
+  updated: string;
+}
+
+const { title, description, projectTitle, projectHref, stack, updated } = Astro.props;
+---
+
+<Layout title={`${title} — NICHOLAS SOBCHAK`}>
+  <NavBar />
+  <main class="mx-auto w-full max-w-4xl px-6 pb-16 pt-16 md:px-10 md:pb-32 md:pt-24">
+    <header class="mb-12 border-b border-charcoal pb-10">
+      <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-gold">
+        [ Technical Documentation ]
+      </p>
+
+      <h1 class="mt-4 font-gothic text-4xl text-bone md:text-5xl">{title}</h1>
+
+      <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        {description}
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-4">
+        {
+          projectHref && (
+            <a
+              href={projectHref}
+              class="border border-charcoal px-5 py-3 font-mono text-xs uppercase tracking-[0.25em] text-faded transition-colors duration-200 hover:border-gold hover:bg-gold/10 hover:text-gold"
+            >
+              [ View Article ]
+            </a>
+          )
+        }
+        <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-faded">
+          {projectTitle} &middot; Updated {updated}
+        </span>
+      </div>
+    </header>
+
+    <div class="mb-8">
+      <p class="mb-4 font-mono text-[10px] uppercase tracking-[0.3em] text-gold">
+        Languages &amp; Frameworks
+      </p>
+      <ul class="flex flex-wrap gap-3">
+        {
+          stack.map((item) => (
+            <li class="border border-charcoal px-3 py-1.5 font-mono text-xs text-parchment/80">
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <article class="border-t border-charcoal pt-10 case-study-content">
+      <slot />
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style is:global>
+  .case-study-content h2 {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+  }
+
+  .case-study-content h2:first-child {
+    margin-top: 0;
+  }
+
+  @media (min-width: 768px) {
+    .case-study-content h2 {
+      font-size: 1.875rem;
+    }
+  }
+
+  .case-study-content h3 {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .case-study-content h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .case-study-content p {
+    font-family: "Cormorant Variable", Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.625;
+    color: #e8e4dc;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .case-study-content p {
+      font-size: 1.25rem;
+    }
+  }
+
+  .case-study-content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    list-style-type: disc;
+  }
+
+  .case-study-content li {
+    font-family: "Cormorant Variable", Georgia, serif;
+    font-size: 1.125rem;
+    line-height: 1.625;
+    color: #e8e4dc;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .case-study-content li {
+      font-size: 1.25rem;
+    }
+  }
+
+  .case-study-content li::marker {
+    color: #c9a86a;
+  }
+
+  .case-study-content strong {
+    color: #ffffff;
+  }
+
+  .case-study-content a {
+    color: #c9a86a;
+    text-decoration: underline;
+    text-decoration-color: rgba(201, 168, 106, 0.4);
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+
+  .case-study-content a:hover {
+    color: rgba(201, 168, 106, 0.8);
+    text-decoration-color: rgba(201, 168, 106, 0.6);
+  }
+
+  .case-study-content code {
+    font-family: "JetBrains Mono Variable", monospace;
+    font-size: 0.9em;
+    color: #c9a86a;
+  }
+
+  .case-study-content blockquote {
+    border-left: 2px solid rgba(201, 168, 106, 0.4);
+    padding-left: 1.5rem;
+    font-style: italic;
+    color: rgba(232, 228, 220, 0.8);
+  }
+</style>

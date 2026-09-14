@@ -4,14 +4,22 @@ import CaseStudyLayout from "../../components/CaseStudyLayout.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
+  const docs = await getCollection("docs");
+  const docByProject = new Map(docs.map((d) => [d.data.project, d]));
+
   return projects.map((project) => ({
     params: { slug: project.id },
-    props: { project },
+    props: { project, docByProject },
   }));
 }
 
-const { project } = Astro.props;
+const { project, docByProject } = Astro.props;
 const { Content } = await render(project);
+
+const doc = docByProject.get(project.id);
+const docsHref = doc
+  ? `${import.meta.env.BASE_URL}/docs/${doc.id}`
+  : undefined;
 ---
 
 <CaseStudyLayout
@@ -20,6 +28,7 @@ const { Content } = await render(project);
   stack={project.data.stack}
   readingTime={project.data.readingTime}
   date={project.data.date}
+  docsHref={docsHref}
   href={project.data.href}
   gif={project.data.gif}
   liveHref={project.data.liveHref}
