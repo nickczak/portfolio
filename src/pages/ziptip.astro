@@ -72,61 +72,135 @@ import Divider from "../components/Divider.astro";
         [ My Role ]
       </p>
       <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
-        As a Founding Software Developer, I've been involved in ZipTip since
-        December 2025. I've contributed across the full stack — building and
-        maintaining the backend services, to name a few — authentication &amp; authorization, 
-        payment processing (stripe), managing redirects &amp; routing, meta tags, and keeping the codebase clean. 
-        So far, on the frontend I help maintain the Angular web app and clean up the codebase of lint errors, AND SO ON. 
-
-        Scan API &amp; Domain Infrastructure
-        - Created the ZipTipScannables DB table and a Lambda that maps scanable IDs to tip accounts with HTTP redirects
-        - Set up the ScanApiEndpoint, API Gateway, custom domain mapping for scan.ziptip.io
-        - Added auth to the scan redirect flow
-        Open Graph / Link Previews
-        - Added OG tags for link previews with message graphics
-        - Refined placard logic
-        CI/CD Pipeline
-        - Created and iterated on pipeline configurations
-        - Fixed prod pipeline dependencies
-        - Enabled rollback support
-        - Added test configs and fixed boto3 credential errors
-        Account Creation &amp; Auth
-        - Implemented phone validation and JSON tests for AuthSignUpFunction
-        - Created validators
-        - Updated signup logic (username by email instead of phone)
-        Merge/Housekeeping
-        - Several merge commits syncing branches (nick, main, dev)
-        - Removed stale folders (aws-sam, auth root folders)
-        - Cleaned up linting errors
-
-        Dev Tooling &amp; Config
-        - Set up ESLint, Prettier, and Husky pre-commit tooling
-        - Added a .browserslistrc targeting mobile-first browsers
-        - Consolidated environment config under src/environments
-        Code Quality &amp; Refactoring
-        - Typed API contracts and migrated services to inject() for lint compliance — touched 28 files across components, services, guards, and interfaces
-        - Fixed lint errors across several merged components (band-linking, claim-tip, dashboard, etc.)
-        - Replaced synthetic identifiers in band-linking tests
-        Docs &amp; Cleanup
-        - Updated README and FEATURES docs to match current features
-        - Removed Husky and cleaned up README
-        - Fixed Amplify Node runtime and dependency lock (amplify.yml)
-        Biggest piece: The inject() migration and API typing commit — that's a significant refactor touching components, services, guards, and interfaces across the app.
+        I joined ZipTip as a <strong>Founding Software Developer in December 2025</strong> and have worked
+        across the full stack — the AWS Lambda backend, the Angular provider app, and the tipper-facing
+        web properties. Between December 2025 and August 2026 I landed <strong>40 commits</strong> across the
+        platform's repos: <strong>provider-api</strong> (Python / AWS SAM), <strong>serviceProviderApp</strong>
+        (Angular + Capacitor), and <strong>ZipTipTipperPage</strong>. Here's what I built.
       </p>
-      <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
-        It's been a unique experience building a product from the ground up —
-        making foundational technical decisions that will scale with the
-        business, and seeing direct impact on real workers who depend on the
-        platform.
+
+      <p class="mt-10 font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ The Scan API — The Headline Piece ]
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        The product's core magic is the QR touchpoint: a guest scans a code and the professional's tipping
+        profile appears instantly. That redirection pipeline was greenfield, and I built it end to end.
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        A scanable id like <span class="text-bone">https://scan.ziptip.io/scanable[ID]</span> must resolve
+        to the service professional's tip page — <span class="text-bone">tip.ziptip.io/id/[accountID]</span> —
+        as an HTTP redirect, fast. I created the <strong>ZipTipScannables</strong> DynamoDB table to hold the
+        touchpoint registry, then wrote a Lambda with scoped permissions to read from <em>both</em> the
+        scannables table and the user data table, perform the id → account mapping, and answer with an HTTP
+        redirect. I wired it behind a custom API Gateway endpoint (<strong>ScanApiEndpoint</strong>), configured
+        the <span class="text-bone">scan.ziptip.io</span> custom domain, and mapped the domain to the stage —
+        including the DNS/API-Gateway round-trip where the dev and prod mappings disagreed, which I resolved by
+        learning which stage was authoritative. I also added <strong>auth to the redirect flow</strong> so the
+        <span class="text-bone">Authorization</span> header is honored before the redirect, keeping the surface
+        from becoming an open proxy — and I shipped unit coverage for the router in a
+        <span class="text-bone">tests/touchpoint/router/unit/test_router.py</span> suite.
+      </p>
+
+      <p class="mt-10 font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ Authentication & Account Signup ]
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        The original signup flow used <strong>Username = phone</strong>, which the Cognito user-pool client
+        rejects with an <span class="text-bone">InvalidParameter</span> error as soon as phone formatting varies.
+        I fixed it by switching the identity to <strong>email</strong>, aligning the handler with what the user
+        pool actually accepts; writing phone validation (normalization + rules) as a <strong>reusable
+        validator</strong> rather than inline string checks; adding <strong>JSON request tests</strong>
+        (<span class="text-bone">AuthSignUpFunction</span>) so the handler's contract is pinned down; and
+        handling duplicate IDs so a re-submitted signup fails cleanly instead of corrupting state. It taught me
+        the value of reading the provider docs before writing code — the "invalid parameter" failure was upstream
+        behavior I'd assumed, not a bug in my handler.
+      </p>
+
+      <p class="mt-10 font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ Open Graph & Link Previews ]
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        Every tip link shares a message on social, so I added <strong>Open Graph tags for rich link
+        previews</strong> with generated message graphics, then refined the placard-drawing logic and cleaned up
+        the response builders that serve them. The result: a tipped message pastes with a real preview card
+        instead of a bare URL — a small touch that lifts how the product is shared every day.
+      </p>
+
+      <p class="mt-10 font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ CI/CD Pipeline ]
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        I built and iterated on the <strong>AWS SAM pipeline configuration</strong> for dev and prod, fixing the
+        prod dependency ordering that broke deploy chains, and <strong>enabled rollback support</strong> so a bad
+        deploy can be undone rather than hotfixed blind. I debugged the <strong>boto3 credential error</strong> in
+        CI and added the test configuration + event/script scaffolding that made the suite run green. Coming back
+        after a stint away, I removed stale folders (aws-sam, auth roots) and resolved branch-stash and
+        merge-merge drift that had accumulated between the <span class="text-bone">nick</span>,
+        <span class="text-bone">main</span>, and <span class="text-bone">dev</span> branches.
+      </p>
+
+      <p class="mt-10 font-mono text-xs uppercase tracking-[0.3em] text-gold">
+        [ The Provider App — Dev Tooling & A Town-Level Refactor ]
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        <span class="text-bone">serviceProviderApp</span> is an Angular 20 + Capacitor app for the professionals
+        themselves: signup, Stripe onboarding handoff, SMS/Cognito passwordless auth, profile creation, band QR
+        linking, pool-tip claiming, and a dashboard with a tipping QR that can be added to Apple Wallet. On the
+        frontend I owned a <strong>code-quality push</strong> across two passes.
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        First, a tooling baseline: I introduced <strong>ESLint, Prettier, and a Husky pre-commit hook</strong>
+        across the app, added a <span class="text-bone">.browserslistrc</span> targeting mobile-first browsers
+        (the app's primary surface is a phone), and consolidated scattered environment config under
+        <span class="text-bone">src/environments</span>.
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        Then, the biggest single commit I've made at ZipTip: "Type API contracts and migrate services to
+        <span class="text-bone">inject()</span> for lint compliance" — <strong>28 files, +660/−540</strong> across
+        components, services, guards, and interfaces: <span class="text-bone">api.service.ts</span>,
+        <span class="text-bone">profile.service.ts</span>, <span class="text-bone">SignUpCoordinator.service.ts</span>,
+        the dashboard/profile/phone-verify/sms-login components, the auth guard, and new typed endpoint interfaces
+        (<span class="text-bone">endpoint-interfaces/response.interface.ts</span>). Mechanically it was a migration
+        from constructor DI to Angular's <span class="text-bone">inject()</span>; substantively it put a
+        <strong>typed contract on every API response the app consumes</strong> instead of <span class="text-bone">any</span>.
+        I also fixed lint errors in freshly merged features (band-linking, claim-tip, dashboard), replaced synthetic
+        identifiers in the band-linking tests so they assert on real data shapes, corrected the Amplify Node runtime
+        + dependency lock in <span class="text-bone">amplify.yml</span>, kept the README and FEATURES docs in line
+        with what the app actually does — and ripped Husky back out when <span class="text-bone">pre-commit</span>
+        proved more ceremony than value in this repo.
       </p>
     </section>
 
     <section class="mt-12">
       <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
-      [ What I've Learned ]
+        [ What I've Learned ]
       </p>
       <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
-        Coming Soon...
+        The through-line across all four repos is a bias toward durable foundations:
+      </p>
+      <p class="mt-4 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        <strong>Redirects are a product feature, not plumbing.</strong><br />
+        The scan flow had to be fast, authenticated, and testable — so it's a real Lambda with real tests and real
+        domain routing.<br />
+        <br />
+        <strong>Read the provider's docs before writing the handler.</strong><br />
+        The phone-identifier assumption cost a debugging session that the docs would have saved outright.<br />
+        <br />
+        <strong>Typed contracts beat any.</strong><br />
+        A migration that touches 28 files pays off every time a service or endpoint changes shape afterward.<br />
+        <br />
+        <strong>Tooling is a product decision.</strong><br />
+        ESLint/Prettier/pre-commit set the bar for everyone merging into the app, and removing Husky when it stopped
+        earning its place was the same judgment in reverse.<br />
+        <br />
+        <strong>Pipelines earn rollback.</strong><br />
+        CI/CD work that lets a deploy be undone is developer insurance that matures quietly.<br />
+      </p>
+      <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
+        It's been a unique experience building a product from the ground up — making foundational decisions that
+        will scale with the business, and seeing direct impact on real workers who depend on the platform. The scan
+        pipeline, the signup auth, the link previews, and the provider-app refactors are the pieces I can point to
+        and say: that was mine.
       </p>
     </section>
 

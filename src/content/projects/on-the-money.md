@@ -31,7 +31,7 @@ I started this project by building the core finance logic in C++, figuring it wo
 The frontend was scrapped and rebuilt in React Native. It was my first time working with a React-style frontend, so I learned how to structure components, use hooks, and manage state. But I kept thinking about how well QuickQuill worked as a PWA on my phone — a React and Tailwind CSS web app would carry far less overhead than React Native, and it would be a more conventional setup overall. So I migrated it again, this time to a plain React web app. It felt like the right call: one codebase focused purely on the web instead of juggling mobile platforms, and solid experience building a web app with React and Tailwind CSS.
 
 ### Deployment
-I Dockerized the whole system and deployed it to a VPS on Google Cloud Compute Engine. These cheap VPSs are great for small projects and give you full control, but they can be a headache because they're so slow — and especially after unexpected charges forced me to move QuickQuill's hosting, I'm not sure I'd willingly use one again.
+I Dockerized the whole system — backend, database, and the C++ engine — and moved it to Render and Vercel from Google Cloud VPS. The Spring Boot API runs on Render, built from a Docker image on each deploy, while PostgreSQL lives on Vercel (Render's free tier only allows one database, and QuickQuill's occupies it). The React frontend ships as a static PWA to Vercel at onthemoney.site.
 
 ## What I Learned
 
@@ -67,9 +67,9 @@ I Dockerized the whole system and deployed it to a VPS on Google Cloud Compute E
   - JNI looked elegant and turned out to be a setup and maintenance headache — an interop bridge only works if it doesn't own your life.
   - "Fastest language" is the wrong instinct for a simple calculation — the cost of streaming across a process boundary outweighs the math itself.
 - **Deployment & Operations**
-  - Dockerizing the whole system — frontend, backend, database — behind nginx made the app reproducible and portable.
-  - Cheap VPS hosting is a real trade: full control and a low price, but slow machines and operational friction — and after unexpected charges forced me to move QuickQuill, I know its limits.
+  - Dockerizing the whole system — backend and database — made the app reproducible and portable, with a single `render.yaml` blueprint defining the entire stack.
+  - Splitting the app across Render and Vercel keeps things simple: the backend belongs to Render, and the database and frontend live on Vercel at onthemoney.site — Render's free tier only allows one database, and QuickQuill's uses it.
   - Self-hosting is a stance: when the whole stack is yours, your financial data isn't a line item in someone else's business.
 
 ## Where It Stands
-I have the finance tracker I've wanted to build for a long time, and it works well. Plaid is integrated into the backend, and I can link my bank accounts to the app and have it automatically track my transactions and account balances. The Monte Carlo retirement projection feature runs 10,000+ simulation paths in seconds. The frontend is built with React and Tailwind CSS, and it works well on both mobile and desktop. The app is deployed to a VPS, and I can access it from anywhere.
+I have the finance tracker I've wanted to build for a long time, and it works well. Plaid is integrated into the backend, and I can link my bank accounts to the app and have it automatically track my transactions and account balances. The Monte Carlo retirement projection feature runs 10,000+ simulation paths in seconds. The frontend is built with React and Tailwind CSS, and it works well on both mobile and desktop. The app is live on Render and Vercel, and I can access it from anywhere.

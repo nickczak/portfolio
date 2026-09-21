@@ -30,7 +30,9 @@ After creating On The Money and seeing how I wanted to keep practicing my Java s
 
 ### Deployment
 
-I wanted to manually deploy this project to a server that I had access to, so I decided to use Docker to containerize the application. I then grabbed a free tier VPS from Google Cloud and deployed the application. This is where I really learned about CI/CD through GitHub Actions — the olddeployment system holds the VPS SSH credentials so it can build a new Docker image if needed and deploy on the VPS automatically. I also learned how to use Docker Compose to manage multiple containers and their dependencies. And I also learned how to use Docker volumes to persist data across container restarts. Google Cloud free tier started charging me for the VPS, so I decided to move the deployment to Render, which is a free hosting service for web applications. I also learned how to use Docker Compose to manage multiple containers and their dependencies. I also learned how to use Docker volumes to persist data across container restarts. The only caveat is that Render shuts down the free tier VPS after 15 minutes of inactivity, so I had to implement a "keep alive" script that would ping the application every 10 minutes to keep it alive. This is a temporary solution until I can find a better hosting solution. 
+I wanted to manually deploy this project to a server that I had access to, so I decided to use Docker to containerize the application. This is where I really learned about CI/CD through GitHub Actions — the deployment system builds a fresh Docker image on push and deploys automatically. I also learned how to use Docker Compose to manage multiple containers and their dependencies, and how to use Docker volumes to persist data across container restarts. The app now runs on Render and Vercel: the Spring Boot backend, backed by managed PostgreSQL, is deployed to Render as a Docker image, and the Angular frontend ships as a static build to Vercel.
+
+The only caveat is that Render's free tier stops a service after 15 minutes of inactivity, so the first request after a period of inactivity will take a while to load. But for a small website like this, it's not a big deal.
 
 ## What I Learned
 
@@ -52,10 +54,10 @@ This was my first web-hosted project that I've built and maintained in a public 
   - This is where I really learned how to use Git and developing a workflow that works for me.
   - Learned how to use GitHub Actions to automate deployment and testing, which was a huge time saver
   - I also really got into make my public repos look nice and professional, which I continue to do with all my projects since
-- **Docker**
-  - Learned how to containerize an application and deploy it to a VPS
+- **Docker / Deployment**
+  - Learned how to containerize an application and automate its deployment through GitHub Actions
   - Learned how to use Docker Compose to manage multiple containers and their dependencies
-  - Learned how to use Docker volumes to persist data across container restarts
+  - Learned how to use Render and Vercel to host a full-stack application, including a PostgreSQL database
 
 ## Where It Stands
 

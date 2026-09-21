@@ -16,7 +16,7 @@ On The Money is a self-hosted finance tracker made of three pieces: a React fron
 │ net worth charting                         │
 │ accounts · transactions · stocks           │
 │ credit score · MC projection UI            │
-│ PWA · nginx · onthemoney.site              │
+│ PWA · Vercel · onthemoney.site             │
 └──────────────────────┬─────────────────────┘
                        │   HTTPS · REST
                        │
@@ -26,7 +26,7 @@ On The Money is a self-hosted finance tracker made of three pieces: a React fron
 │ BCrypt · session tokens · auth             │     │ quotes · symbols   │
 │ FinnHub client · MC engine client          │────▶│ indices · candles  │
 │ Plaid client (link · sync)                 │──┐  │ stock data API     │
-│ Docker · compose · nginx                   │  │  └────────────────────┘
+│ Render · Docker                            │  │  └────────────────────┘
 └──────────┬───────────────────────┬─────────┘  │  ┌────────────────────┐
            │                       │            └─▶│ PLAID              │
            │                       │               │ bank linking       │
@@ -35,7 +35,7 @@ On The Money is a self-hosted finance tracker made of three pieces: a React fron
            │                       │               │ encrypted at rest  │
            │                       │               └────────────────────┘
 ┌──────────┯─────────┐  ┌──────────┯─────────┐
-│ C++17 ENGINE       │  │ POSTGRESQL         │
+│ C++17 ENGINE       │  │ POSTGRESQL (Vercel) │
 │ Monte Carlo        │  │ users · sessions   │
 │ 10,000+ sim paths  │  │ accounts · txns    │
 │ only used by       │  │ net worth history  │
@@ -44,7 +44,7 @@ On The Money is a self-hosted finance tracker made of three pieces: a React fron
 └────────────────────┘  └────────────────────┘
 ```
 
-The frontend is a React single-page app served behind nginx; everything it shows arrives as JSON over HTTPS from the Spring Boot API. That API owns the data model, user auth, and the two external integrations — Plaid for banking data and FinnHub for market data. The Monte Carlo engine is the one deliberate outlier: it stays a separate C++ process, buildable and testable on its own, and streams projection results back to Spring Boot over OS pipes.
+The frontend is a React single-page app deployed to Vercel; everything it shows arrives as JSON over HTTPS from the Spring Boot API. That API owns the data model, user auth, and the two external integrations — Plaid for banking data and FinnHub for market data. The Monte Carlo engine is the one deliberate outlier: it stays a separate C++ process, buildable and testable on its own, and streams projection results back to Spring Boot over OS pipes.
 
 ## Data Model
 
@@ -163,4 +163,4 @@ The component kit is deliberately small — knowing three pieces explains most o
 - **Start auth simple, design it to grow.** BCrypt hashing plus UUID token sessions covers the product today, borrowed from QuickQuill, and leaves room for a fuller auth system without re-architecting.
 - **Keep the backend boring on purpose.** Controllers, services, and JPA repositories around a plain REST/JSON API — the frontend stays simple because the API stays simple.
 - **A tiny design system is a product feature.** One token file, a three-font pairing (serif figures, sans labels), tabular numerals, and a hand-rolled SVG chart mean the engraving-style UI carries the product's identity — and when the kit fits in your head, every new screen looks like it belongs. The constraints are the design.
-- **Self-hosting is a stance.** Docker Compose behind nginx keeps all user data private by default — the tracker never requires surrendering financial data to a third party.
+- **Self-hosting is a stance.** Running the backend on Render and the database on Vercel keeps the ledger your own by default — the tracker never requires surrendering financial data to a third party.

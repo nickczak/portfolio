@@ -59,7 +59,7 @@ const projects: Entry[] = [
     bullets: [
       "Integrated Plaid Link to let users securely connect bank accounts and automatically sync real transactions and balances through Plaid's API.",
       "Built a C++17 Monte Carlo engine running 10,000 simulations/request into a Spring Boot REST API for retirement and portfolio growth projections.",
-      "Pulled live stock quotes, market indices, and symbol search via Finnhub with a per-user watchlist; shipped the frontend as a React (Vite) PWA deployed on a VPS. (see On The Money)",
+      "Pulled live stock quotes, market indices, and symbol search via Finnhub with a per-user watchlist; shipped the frontend as a React (Vite) PWA and PostgreSQL database on Vercel, with a Spring Boot API on Render. (see On The Money)",
     ],
   },
   {
@@ -69,7 +69,7 @@ const projects: Entry[] = [
     bullets: [
       "Built a C++17 trie-based engine that serves lookups, spell-check suggestions, and autocomplete across a 1.28M-word dictionary using thread-local SQLite connections and a thread-safe in-memory LRU cache.",
       "Integrated the native engine into a Spring Boot REST API via Java's Panama FFM (Foreign Function & Memory) API with a flat extern \"C\" ABI — native calls with no JNI or glue code.",
-      "Shipped an Angular 21 frontend with RxJS debounced search streams and ghost-text autocomplete; multi-stage Dockerized deployment of C++ engine, Spring Boot, Angular, and PostgreSQL on a free-tier VPS. (see QuickQuill)",
+      "Shipped an Angular 21 frontend on Vercel with RxJS debounced search streams and ghost-text autocomplete; multi-stage Dockerized deployment of the C++ engine, Spring Boot, and PostgreSQL on Render. (see QuickQuill)",
     ],
   },
 ];
