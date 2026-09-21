@@ -10,17 +10,58 @@ updated: "08.30.2026"
 
 QuickQuill is split into three cooperating layers.
 
+```text
+┌────────────────────────────────────────────┐
+│ ANGULAR 21  frontend (web/)                │
+│ writing environment                        │
+│ dictionary lookup · spellchecker           │
+│ synonyms · autocomplete                    │
+│ account surfaces                           │
+│ GitHub Pages · quickquill.ink              │
+└──────────────────────┬─────────────────────┘
+                       │   HTTPS · REST (api.quickquill.ink)
+                       │
+┌──────────────────────┯─────────────────────┐
+│ SPRING BOOT  service (studio/)             │
+│ REST controllers · services                │
+│ Spring Data JPA repositories               │
+│ BCrypt · UUID session tokens               │
+│ thread-safe LRU cache (10k words)          │
+│ Render · Docker · CI                       │
+└──────────┬───────────────────────┬─────────┘
+           │                       │   Panama FFM (native .so, no JNI)
+           │                       │   Spring Data JPA
+           │                       │
+┌──────────┯─────────┐            ┌──────────┯─────────┐
+│ C++17 ENGINE       │            │ POSTGRESQL         │
+│ Trie lookup · O(L) │            │ accounts · sessions │
+│ “Did you mean…?”   │            │ documents · history │
+│ autocomplete       │            │ suggested words    │
+│ similar-word search │            └────────────────────┘
+│ SQLite connections │
+└──────────┬─────────┘
+           │   thread-local SQLite connections
+           │
+ ┌─────────┯────────┐
+ │ SQLITE           │
+ │ dictionary.db    │
+ │ ~1.3M words      │
+ │ kaikki.org       │
+ │ Wiktionary data  │
+ └──────────────────┘
+```
+
 **C++17 engine** — owns the CPU-bound dictionary and spellchecking logic: the Trie tree, the "Did you mean...?" suggestion algorithm, and similar-word search.
 
 **Java / Spring Boot service** — exposes a REST API, handles authentication, and mediates between the client and the C++ engine.
 
 **Angular 21 frontend** — provides the writing environment, quick-search dictionary, and account surfaces.
 
-The C++ engine and the Java service communicate over OS pipes using JSON. This keeps the coupling loose so either half can be replaced independently.
+The C++ engine is compiled to a native shared library (`libquickquill_engine.so`) and called by the Java service through the Panama Foreign Function & Memory API — no JNI or glue code. This keeps the coupling loose so either half can be replaced and tested independently.
 
 ## Data Model
 
-Dictionary data lives in PostgreSQL. A `words` table holds ~1.2M+ entries from the [kaikki.org](https://kaikki.org/) Wiktionary JSONL extract, keyed by a word ID. Definition, pronunciation, and example sentence data are stored relationally and fetched after a Trie lookup returns the word ID.
+Dictionary data lives in SQLite (`dictionary.db`, ~1.3M words from the [kaikki.org](https://kaikki.org/) Wiktionary JSONL extract) and is served directly by the C++ engine over thread-local connections. A Trie lookup returns a word ID, then definition, pronunciation, and example sentence data are pulled for it; user-facing data lives in PostgreSQL.
 
 User data is stored separately. Accounts keep search history and saved/suggested words.
 

@@ -77,6 +77,41 @@ import Divider from "../components/Divider.astro";
         maintaining the backend services, to name a few — authentication &amp; authorization, 
         payment processing (stripe), managing redirects &amp; routing, meta tags, and keeping the codebase clean. 
         So far, on the frontend I help maintain the Angular web app and clean up the codebase of lint errors, AND SO ON. 
+
+        Scan API &amp; Domain Infrastructure
+        - Created the ZipTipScannables DB table and a Lambda that maps scanable IDs to tip accounts with HTTP redirects
+        - Set up the ScanApiEndpoint, API Gateway, custom domain mapping for scan.ziptip.io
+        - Added auth to the scan redirect flow
+        Open Graph / Link Previews
+        - Added OG tags for link previews with message graphics
+        - Refined placard logic
+        CI/CD Pipeline
+        - Created and iterated on pipeline configurations
+        - Fixed prod pipeline dependencies
+        - Enabled rollback support
+        - Added test configs and fixed boto3 credential errors
+        Account Creation &amp; Auth
+        - Implemented phone validation and JSON tests for AuthSignUpFunction
+        - Created validators
+        - Updated signup logic (username by email instead of phone)
+        Merge/Housekeeping
+        - Several merge commits syncing branches (nick, main, dev)
+        - Removed stale folders (aws-sam, auth root folders)
+        - Cleaned up linting errors
+
+        Dev Tooling &amp; Config
+        - Set up ESLint, Prettier, and Husky pre-commit tooling
+        - Added a .browserslistrc targeting mobile-first browsers
+        - Consolidated environment config under src/environments
+        Code Quality &amp; Refactoring
+        - Typed API contracts and migrated services to inject() for lint compliance — touched 28 files across components, services, guards, and interfaces
+        - Fixed lint errors across several merged components (band-linking, claim-tip, dashboard, etc.)
+        - Replaced synthetic identifiers in band-linking tests
+        Docs &amp; Cleanup
+        - Updated README and FEATURES docs to match current features
+        - Removed Husky and cleaned up README
+        - Fixed Amplify Node runtime and dependency lock (amplify.yml)
+        Biggest piece: The inject() migration and API typing commit — that's a significant refactor touching components, services, guards, and interfaces across the app.
       </p>
       <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
         It's been a unique experience building a product from the ground up —
