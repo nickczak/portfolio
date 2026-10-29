@@ -19,7 +19,7 @@ Static portfolio site built with [Astro](https://astro.build) and styled with [T
 - `/projects/quickquill` — "Why I Built a Writing Tool for Distraction-Free Authors"
 - `/projects/on-the-money` — "Stop Splitting Finances Across Five Apps: Build Your Own"
 - `/ziptip` — ZipTip overview, mission, and founding developer role
-- `/resume` — Full résumé rendered in the site theme + PDF download
+- `/resume` — Full résumé rendered in the site theme + matching PDF download
 
 ## Tech Stack
 
@@ -78,3 +78,12 @@ Static portfolio site built with [Astro](https://astro.build) and styled with [T
 ## License
 
 © 2026 Nicholas Sobchak. All rights reserved.
+
+## Résumé download
+
+Sources live in the sibling `resume` repository as `mainCpp.tex` and `mainJS.tex`.
+The website displays the C++ / Systems version and offers one matching download,
+`nicholas-sobchak-resume.pdf`. Run `./build.sh --sync-portfolio` from the résumé
+repository after editing, inspect the PDF, then build this site with `npm run build`.
+The older `mainJS_421_revised.pdf` URL remains a copy of the C++ version for existing
+links. Both specialized PDFs remain available in the résumé repository.

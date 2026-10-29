@@ -2,6 +2,7 @@
 name: "QuickQuill"
 title: "Why I Built a Writing Tool for Distraction-Free Authors"
 description: "QuickQuill is a simple writing environment with a quick search dictionary and spellchecker. The app has features such as spellchecking (Did you mean ...?), similar search, word suggestions (Synonym selection), autocomplete, and more."
+status: "Writing & Dictionary Platform"
 stack: ["TypeScript / Angular 21", "Java / Spring Boot", "PostgreSQL", "C++17 / Trie Tree", "Docker"]
 href: "https://github.com/nickczak/QuickQuill-Dictionary-SpellChecker"
 gif: "quickquill-demo.gif"
@@ -45,7 +46,7 @@ This was my first web-hosted project that I've built and maintained in a public 
 - **Spring Boot**
   - Spring Boot has a lot of "magic" — if you don't learn what's happening under the hood, you'll get lost
   - Got hands-on experience with Spring Data JPA and Hibernate for database interaction
-  - Integrated authentication using simple UUID token sessions and BCrypt, with room to grow that side of the application
+  - Integrated authentication using UUID token sessions and BCrypt; moved credentials into validated JSON request bodies and added regression tests for rejected URL/form credentials and sensitive error output
 - **Angular**
   - Angular and TypeScript were both new to me — learned how to structure an Angular app and use the CLI to generate components, services, and modules
   - Used Angular's dependency injection to make the frontend more maintainable

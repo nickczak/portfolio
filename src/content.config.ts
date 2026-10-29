@@ -8,6 +8,7 @@ const projects = defineCollection({
     name: z.string(),
     title: z.string(),
     description: z.string(),
+    status: z.string().optional(),
     stack: z.array(z.string()),
     readingTime: z.number(),
     date: z.string(),

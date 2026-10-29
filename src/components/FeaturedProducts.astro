@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import ProductCard from "./ProductCard.astro";
 
-const featuredOrder = ["quickquill", "on-the-money", "hashword"];
+const featuredOrder = ["quickquill", "on-the-money", "hashword", "c2-beacon", "kg2rag"];
 const priority = (id: string) => {
   const index = featuredOrder.indexOf(id);
   return index === -1 ? featuredOrder.length : index;
@@ -27,6 +27,7 @@ const projects = (await getCollection("projects")).sort(
         slug={project.id}
         name={project.data.name}
         description={project.data.description}
+        status={project.data.status}
         stack={project.data.stack}
         href={project.data.href}
         gif={project.data.gif}

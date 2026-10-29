@@ -3,7 +3,7 @@ title: "QuickQuill — Technical Documentation"
 description: "Architecture, the C++17 Trie engine, the Panama FFM bridge, the SQLite + PostgreSQL data model, authentication, and frontend design behind QuickQuill's dictionary and writing environment."
 project: "quickquill"
 stack: ["C++17 / Trie Engine", "Java / Spring Boot", "TypeScript / Angular 21", "PostgreSQL / SQLite", "Docker"]
-updated: "09.21.2026"
+updated: "10.29.2026"
 ---
 
 ## Architecture Overview
@@ -202,6 +202,15 @@ The API splits cleanly into a **public, stateless dictionary** and **account-sco
 | `GET /api/health` | Liveness probe for the Render deploy |
 
 ### Authentication
+
+Signup, login, and password changes accept validated JSON request bodies with
+`Content-Type: application/json`. Passwords are never read from URL parameters or
+form fields. Session tokens travel in the `Authorization: Bearer <token>` header.
+Malformed JSON and missing, null, or blank credentials return a generic 400 error;
+non-JSON submissions return 415. Request objects redact their string representations,
+and framework request-detail and SQL bind logging are disabled. Regression tests
+cover JSON submission, rejected query/form credentials, and sensitive error output.
+
 
 | Endpoint | Success |
 |---|---|

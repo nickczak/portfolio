@@ -2,6 +2,7 @@
 name: "Hashword"
 title: "Hashword: A Wallet and Password Manager in the Terminal"
 description: "Hashword is a keyboard-driven terminal UI prototype for a wallet and password manager, built with TypeScript, React, and Ink. Its next phase will add account authentication and locally encrypted vault storage in Neon, with a separate master key that stays on the user's machine."
+status: "Terminal Application · In Progress"
 stack: ["TypeScript", "React / Ink", "Node.js 22+"]
 href: "https://github.com/nickczak/Hashword-Wallet-Password-Manager"
 gif: "hashword-demo.gif"

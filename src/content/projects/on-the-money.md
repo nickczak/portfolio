@@ -2,6 +2,7 @@
 name: "On The Money"
 title: "Stop Splitting Finances Across Five Apps: Build Your Own"
 description: "On The Money is a self-hosted personal finance tracker that allows you to track your net worth, monitor transactions/account balances, and run Monte Carlo retirement projections while keeping your data private. Accounts can be linked via Plaid, giving real-time, hands-off tracking of your finances."
+status: "Personal Finance Platform"
 stack: ["Java 17 / Spring Boot 3.3", "TypeScript / React", "PostgreSQL", "C++17 / Monte Carlo Engine", "Docker"]
 gif: "onthemoney-demo.gif"
 href: "https://github.com/nickczak/OnTheMoney-Finance-Tracker"

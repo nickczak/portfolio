@@ -6,6 +6,7 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title: string;
   description: string;
+  status?: string;
   stack: string[];
   readingTime: number;
   date: string;
@@ -15,7 +16,7 @@ interface Props {
   liveHref?: string;
 }
 
-const { title, description, stack, readingTime, date, docsHref, href, gif, liveHref } = Astro.props;
+const { title, description, status, stack, readingTime, date, docsHref, href, gif, liveHref } = Astro.props;
 
 const gifSrc = gif ? `${import.meta.env.BASE_URL}/${gif}` : undefined;
 ---
@@ -25,6 +26,12 @@ const gifSrc = gif ? `${import.meta.env.BASE_URL}/${gif}` : undefined;
   <main class="mx-auto w-full max-w-4xl px-6 pb-16 pt-16 md:px-10 md:pb-32 md:pt-24">
     <header class="mb-12 border-b border-charcoal pb-10">
       <h1 class="font-gothic text-4xl text-bone md:text-5xl">{title}</h1>
+
+      {status && (
+        <p class="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-gold">
+          {status}
+        </p>
+      )}
 
       <p class="mt-6 max-w-3xl font-academic text-lg leading-relaxed text-parchment md:text-xl">
         {description}
