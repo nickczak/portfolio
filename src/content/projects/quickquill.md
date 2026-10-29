@@ -18,7 +18,7 @@ QuickQuill began as a personal project to continue where my data structures clas
 
 ### A C++ Application
 
-At first I wanted to keep this whole project in C++ and make it a command line tool, but I started getting curious about hosting it on the web. I wanted to make it a web application that could be used by anyone. To keep the project in C++, I used Crow — a C++ web framework that is similar to Flask in Python. With that, I created a REST API that would allow users to send requests that would touch the Dictionary and SpellChecker layers that rely on the Trie tree. To keep the frontend minimal to match my minimal knowledge of frontend development at the time, I built a very simple frontend.
+At first I wanted to keep this whole project in C++ and make it a command line tool, but I started getting curious about hosting it on the web. I wanted to make it a web application that could be used by anyone. To keep the project in C++, I used Crow — a C++ web framework. With that, I created a REST API that would allow users to send requests that would touch the Dictionary and SpellChecker layers that rely on the Trie tree. To keep the frontend minimal to match my minimal knowledge of frontend development at the time, I built a very simple frontend.
 
 At UMBC we don't use any frameworks so I had experimented with testing this application without a framework but I quickly remembered how miserable that is to read and run. I explored gtest but quickly realized that was a bit too much for this project, so I ended up landing on the Catch2 testing framework. This was perfect for the project because it was easy to use and lightweight.
 
