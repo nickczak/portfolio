@@ -2,7 +2,14 @@
 import { getCollection } from "astro:content";
 import ProductCard from "./ProductCard.astro";
 
-const projects = await getCollection("projects");
+const featuredOrder = ["quickquill", "on-the-money", "hashword"];
+const priority = (id: string) => {
+  const index = featuredOrder.indexOf(id);
+  return index === -1 ? featuredOrder.length : index;
+};
+const projects = (await getCollection("projects")).sort(
+  (a, b) => priority(a.id) - priority(b.id) || a.id.localeCompare(b.id),
+);
 ---
 
 <section class="mx-auto w-full max-w-5xl px-6 pb-16 pt-16 md:px-10 md:pb-32 md:pt-24">
