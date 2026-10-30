@@ -5,6 +5,7 @@ description: "An early-stage C17 systems and security learning project. The curr
 status: "Malware Persistence · In Progress"
 stack: ["C17", "CMake", "POSIX / Windows APIs", "AddressSanitizer / UndefinedBehaviorSanitizer"]
 href: "https://github.com/nickczak/myC2-beacon"
+gif: "c2-beacon-heartbeat.png"
 readingTime: 1
 date: "10.29.2026"
 ---
