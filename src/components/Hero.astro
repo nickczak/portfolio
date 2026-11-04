@@ -1,6 +1,7 @@
 ---
 import Divider from "./Divider.astro";
 import ArticlesCarousel from "./ArticlesCarousel.astro";
+import ContributionGraph from "./ContributionGraph.astro";
 
 const socials = [
   {
@@ -31,22 +32,20 @@ const skills = [
     ],
   },
   {
-    category: "Tools & Services",
-    items: [
-      "Linux",
-      "Git",
-      "Docker",
-      "AWS Lambda",
-      "SAM CLI",
-      "API Gateway",
-      "Amazon Cognito",
-      "DynamoDB",
-      "PostgreSQL",
-      "SQLite",
-      "GitHub Actions",
-    ],
+    category: "Cloud",
+    items: ["AWS Lambda", "SAM CLI", "API Gateway", "Amazon Cognito"],
+  },
+  {
+    category: "Databases",
+    items: ["PostgreSQL", "SQLite", "DynamoDB"],
+  },
+  {
+    category: "Development tools",
+    items: ["Linux", "Git", "Docker", "GitHub Actions"],
   },
 ];
+
+const primaryStack = new Set(["C++", "Python", "Java", "Spring Boot", "AWS Lambda", "PostgreSQL", "Git", "Docker", "Linux", "Angular", "React"]);
 ---
 
 <section class="relative mx-auto w-full max-w-5xl flex-1 overflow-hidden px-6 pb-10 pt-12 md:px-10 md:pb-14 md:pt-24">
@@ -84,9 +83,9 @@ const skills = [
             rel="noopener noreferrer"
             aria-label={label}
             title={label}
-            class="flex h-12 w-12 items-center justify-center text-faded transition-colors hover:text-gold"
+            class="flex h-14 w-14 items-center justify-center text-faded transition-colors hover:text-gold"
           >
-            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
               <path d={path} />
             </svg>
           </a>
@@ -137,25 +136,20 @@ const skills = [
   </div>
 </section>
 
-<section class="mx-auto w-full max-w-5xl" aria-label="Tech stack">
-  <div class="mx-auto w-full max-w-5xl px-6 pb-3 sm:px-10">
-    <Divider />
+<section class="tech-stack mx-auto w-full max-w-5xl px-6 pb-14 sm:px-10" aria-label="Tech stack" data-tech-stack>
+  <Divider />
+  <div class="tech-groups">
+    {skills.map(({ category, items }, groupIndex) => (
+      <div class="tech-group">
+        <h3 class="font-mono text-xs uppercase tracking-[0.3em] text-gold">[ {category} ]</h3>
+        <ul class="tech-badges" role="list" aria-label={category}>
+          {items.map((item, index) => (
+            <li class:list={["tech-badge", { "is-primary": primaryStack.has(item) }]} style={`--badge-delay: ${groupIndex * 80 + index * 35}ms`}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
-
-  <div class="grid grid-cols-1 divide-y divide-charcoal px-6 pb-14 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-0">
-      {
-        skills.map(({ category, items }) => (
-          <div class="pb-6 pt-1 text-center sm:text-left sm:px-8 sm:first:pl-0 sm:last:pr-0">
-            <p class="font-mono text-xs uppercase tracking-[0.3em] text-gold">
-              [ {category} ]
-            </p>
-            <p class="mt-5 font-mono text-sm leading-loose text-parchment md:text-base">
-              {items.join("  ·  ")}
-            </p>
-          </div>
-        ))
-      }
-    </div>
 </section>
 
 <section class="mx-auto w-full max-w-5xl px-6 pb-14 md:px-10" aria-labelledby="about-heading">
@@ -188,6 +182,8 @@ const skills = [
 
 <ArticlesCarousel />
 
+<ContributionGraph />
+
 <section class="mx-auto w-full max-w-5xl px-6 pb-14 sm:px-10" aria-label="Contact">
   <Divider />
   <div class="flex flex-col items-center gap-8 pt-10 text-center md:flex-row md:items-end md:justify-between md:text-left">
@@ -210,3 +206,30 @@ const skills = [
     </a>
   </div>
 </section>
+
+<style>
+  .tech-groups { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:2rem; padding-top:1.5rem; }
+  .tech-group { grid-column:span 2; }
+  .tech-group:nth-child(-n+2) { grid-column:span 3; }
+  .tech-group:nth-child(n+3) { border-top:1px solid var(--color-charcoal); padding-top:1.5rem; }
+  .tech-badges { display:flex; flex-wrap:wrap; align-content:start; gap:.7rem .6rem; margin-top:1.25rem; padding:0; list-style:none; }
+  .tech-badge { border:1px solid var(--color-charcoal); background:transparent; padding:.5rem .75rem; color:var(--color-parchment); font-family:var(--font-mono); font-size:.8rem; line-height:1.5; letter-spacing:.015em; transition:border-color .2s,color .2s,background-color .2s; }
+  .tech-badge.is-primary { border-color:#c9a86a66; }
+  .tech-badge:hover { border-color:var(--color-gold); color:var(--color-gold); background:#c9a86a0a; }
+  @keyframes badge-entrance { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+  @media (prefers-reduced-motion:no-preference) { .tech-stack.is-visible .tech-badge { animation:badge-entrance .4s ease-out both; animation-delay:var(--badge-delay); } }
+  @media (max-width:767px) { .tech-groups { grid-template-columns:1fr; gap:1.5rem; } .tech-group,.tech-group:nth-child(-n+2) { grid-column:auto; } .tech-group + .tech-group { border-top:1px solid var(--color-charcoal); padding:1.5rem 0 0; } }
+</style>
+
+<script>
+  const stack = document.querySelector('[data-tech-stack]');
+  if (stack && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        stack.classList.add('is-visible');
+        observer.disconnect();
+      }
+    }, { threshold: .15 });
+    observer.observe(stack);
+  }
+</script>
