@@ -81,7 +81,7 @@ Static portfolio site built with [Astro](https://astro.build) and styled with [T
 
 ## Résumé download
 
-Sources live in the sibling `resume` repository as `mainCpp.tex` and `mainJS.tex`.
+Sources live in the sibling `resume` repository as `mainC.tex` and `mainT.tex`.
 The website displays the C++ / Systems version and offers one matching download,
 `nicholas-sobchak-resume.pdf`. Run `./build.sh --sync-portfolio` from the résumé
 repository after editing, inspect the PDF, then build this site with `npm run build`.

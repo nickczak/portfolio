@@ -18,7 +18,7 @@ interface ContactItem {
 }
 
 const contact: ContactItem[] = [
-  { text: "Eldersburg, MD 21784" },
+  { text: "Eldersburg, MD" },
   { text: "(443) 586.6341" },
   { text: "nlsobchak@gmail.com", href: "mailto:nlsobchak@gmail.com" },
   { text: "Portfolio", href: "https://nickczak.github.io/portfolio/" },
@@ -36,7 +36,7 @@ const experience: Entry[] = [
     bullets: [
       "Designed a serverless scan API with AWS Lambda, API Gateway, and DynamoDB, implementing authentication, custom-domain routing, and ID-to-account redirects for a real-time tipping platform.",
       "Built AWS SAM CI/CD pipelines with OIDC authentication, automated Route 53 DNS updates, and rollback support for development and production environments.",
-      "Built unit and integration tests with pytest for backend services and automated AWS SAM deployments.",
+      "Wrote pytest unit and integration tests to validate backend services and support automated AWS SAM deployments.",
       "Refactored Angular services and typed API clients; introduced shared linting tooling across the codebase."
     ]
   }
@@ -58,9 +58,9 @@ const projects: Entry[] = [
     dates: "",
     bullets: [
       "Built a trie-based C++ dictionary engine supporting lookup, spell-check suggestions, and autocomplete across a 1.28M-word dictionary.",
-      "Used mutex synchronization for an LRU cache and thread-local SQLite connections for concurrent lookups; managed trie nodes and database handles with C++ smart pointers.",
+      "Used std::mutex for thread-safe LRU caching and thread_local SQLite connections for concurrent lookups; managed trie nodes and database handles using std::unique_ptr.",
       "Integrated the native engine with a Spring Boot REST API through Java's Foreign Function & Memory API and an extern \"C\" interface.",
-      "Wrote Catch2 unit and integration tests covering data structures, dictionary operations, and concurrent lookups; packaged the native engine and Java service in a multi-stage Docker build."
+      "Tested data structures, dictionary operations, and concurrent lookups with Catch2; packaged C++ and Java services in a multi-stage Docker build."
     ]
   },
   {
@@ -79,7 +79,7 @@ const education: Entry[] = [
   {
     role: "University of Maryland, Baltimore County (UMBC)",
     org: "Bachelor of Science in Computer Science",
-    meta: "Relevant coursework: Neurosymbolic AI, Database Management Systems, Data Visualization",
+    meta: "Relevant coursework: Operating Systems, Neurosymbolic AI, Database Management Systems, Data Visualization",
     dates: "Expected May 2027",
   },
   {
