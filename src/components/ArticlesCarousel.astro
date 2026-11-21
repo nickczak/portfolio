@@ -11,7 +11,7 @@ const projects = await getCollection("projects");
     [ Articles ]
   </p>
 
-  <div class="scrollbar-hide -mx-6 mt-8 flex gap-6 overflow-x-auto px-6 pb-4 sm:-mx-0 sm:px-0">
+  <div class="articles-scroll -mx-6 mt-8 flex gap-6 overflow-x-auto px-6 pb-4 sm:-mx-0 sm:px-0">
     {
       projects.map((project) => (
         <a
@@ -51,11 +51,8 @@ const projects = await getCollection("projects");
 </section>
 
 <style>
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  .articles-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gold) var(--color-charcoal);
   }
 </style>

@@ -39,8 +39,8 @@
   }
 
   ::selection {
-    background-color: var(--color-oxblood);
-    color: var(--color-bone);
+    background-color: var(--color-gold);
+    color: var(--color-ink-black);
   }
 }
 

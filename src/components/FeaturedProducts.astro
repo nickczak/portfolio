@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import ProductCard from "./ProductCard.astro";
 
-const featuredOrder = ["quickquill", "on-the-money", "hashword", "c2-beacon", "kg2rag"];
+const featuredOrder = ["quickquill", "on-the-money", "kg2rag", "hashword", "c2-beacon"];
 const priority = (id: string) => {
   const index = featuredOrder.indexOf(id);
   return index === -1 ? featuredOrder.length : index;
